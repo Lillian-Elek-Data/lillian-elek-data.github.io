@@ -71,11 +71,42 @@
   </div>
 </section>
 
-<footer class="site-footer">
-  <div class="container">
+<footer id="footer" class="site-footer">
+  <div class="container footer-contacts">
+    <section class="contact-method">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <h3>Email</h3>
+      <a href="mailto:your@email.com">your@email.com</a>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+      <h3>Phone</h3>
+      <span>+1 (xxx) xxx-xxxx</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+      <h3>Location</h3>
+      <span>Denver, Colorado, USA</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      <h3>Other</h3>
+      <span>
+        <a href="https://linkedin.com/in/lillian-elek" target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/Lillian-Elek-Data-Portfolio" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </section>
+  </div>
+
+  <div class="container legal">
     <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
   </div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  
 </body>
 </html>
