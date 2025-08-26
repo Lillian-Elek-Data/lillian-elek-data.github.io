@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Lillian Elek</title>
+  <meta name="description" content="About Lillian Elek, Data Analyst & BI Specialist.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <div class="brand">Lillian Elek</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a class="active" href="about.html">About</a>
+      <a class="btn" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container split">
+    <div>
+      <h1>About</h1>
+      <p class="lead">I’m a Data Analyst & BI Specialist with a Master’s in Business Intelligence & Data Analytics and 3+ years of experience turning raw data into actionable insights.</p>
+      <p>I build reliable pipelines and decision-ready dashboards with <strong>SQL</strong>, <strong>Python</strong>, <strong>Power BI</strong>, and <strong>Azure Pipelines</strong>. My focus is enabling teams to make faster, clearer decisions — especially in clean-energy and SaaS contexts.</p>
+      <h2>Skills</h2>
+      <ul class="pill-list">
+        <li>SQL (T-SQL, window functions, CTEs)</li>
+        <li>Python (pandas, scikit-learn, matplotlib)</li>
+        <li>Power BI (DAX, Power Query, interactive dashboards)</li>
+        <li>Azure Data Factory & Pipelines (ETL/ELT)</li>
+        <li>Statistics & Modeling (regression, classification, forecasting)</li>
+        <li>Data storytelling & stakeholder reporting</li>
+      </ul>
+    </div>
+    <img src="assets/profile.png" alt="Portrait of Lillian Elek">
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container split">
+    <div>
+      <h2>Contact</h2>
+      <p>Want to collaborate or see more? Reach out anytime.</p>
+      <ul class="contact-list">
+        <li><strong>Email:</strong> your@email.com</li>
+        <li><strong>LinkedIn:</strong> <a target="_blank" href="https://linkedin.com/in/lillian-elek">linkedin.com/in/lillian-elek</a></li>
+        <li><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Lillian-Elek-Data-Portfolio">github.com/Lillian-Elek-Data-Portfolio</a></li>
+      </ul>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/mayvlqrp" method="POST">
+      <label>Your email <input type="email" name="email" required></label>
+      <label>Message <textarea name="message" rows="5" required></textarea></label>
+      <button class="btn primary" type="submit">Send</button>
+      <p class="form-note">This form uses Formspree. Replace the action URL with your own endpoint if needed.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
