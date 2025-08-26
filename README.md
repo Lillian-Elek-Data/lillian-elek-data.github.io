@@ -3,11 +3,10 @@
 This repository powers the portfolio site for **Lillian Elek**. It’s a clean, single‑page site you can deploy via **GitHub Pages**.
 
 ## 🚀 Deploy
-1) Push this repo to your org (e.g., `Lillian-Elek-Data-Portfolio/Lillian-Elek-Data-Portfolio.github.io` or `Lillian-Elek-Data-Portfolio/portfolio-site`).  
+1) Push this repo to your org (e.g., `Lillian-Elek-Data/Lillian-Elek-Data.github.io`).  
 2) In the repo: **Settings → Pages → Source: `main` branch, `/ (root)`**.  
 3) Your site will be available at:
-   - `https://Lillian-Elek-Data-Portfolio.github.io` (if repo is named `Lillian-Elek-Data-Portfolio.github.io`), or
-   - `https://Lillian-Elek-Data-Portfolio.github.io/portfolio-site` (if repo is named `portfolio-site`).
+   - `https://Lillian-Elek-Data.github.io` (if repo is named `Lillian-Elek-Data.github.io`)
 
 ## ✏️ Customize
 - Update links in **index.html** to point at your real repos:
