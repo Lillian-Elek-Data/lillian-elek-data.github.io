@@ -67,3 +67,26 @@ a:hover{text-decoration:underline}
   .grid.cards-3,.grid.cards-2{grid-template-columns:1fr}
   .hero h1{font-size:34px}
 }
+
+/* Footer contact grid */
+.site-footer { border-top: 1px solid var(--line); padding: 24px 0 16px; }
+.footer-contacts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 8px;
+}
+.contact-method {
+  background: var(--card);
+  border: 1px solid #1f2435;
+  border-radius: 14px;
+  padding: 14px;
+}
+.contact-method h3 { margin: 8px 0 6px; font-size: 14px; color: #cfd5e6; }
+.contact-method i { font-size: 18px; color: var(--accent2); margin-right: 6px; }
+.legal { text-align: center; color: #9aa3b8; }
+
+/* Responsive */
+@media (max-width: 1000px) { .footer-contacts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px)  { .footer-contacts { grid-template-columns: 1fr; } }
