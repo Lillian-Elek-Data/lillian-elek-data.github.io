@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lillian Elek — Data Analytics Portfolio</title>
+  <meta name="description" content="Data analytics & BI portfolio: SQL, Python, Power BI, Azure Pipelines, and statistics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">Lillian Elek</div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>Data Analytics & BI Portfolio</h1>
+        <p>I turn raw data into actionable insights using <strong>SQL</strong>, <strong>Python</strong>, <strong>Power BI</strong>, and <strong>Azure Pipelines</strong>. Master's in BI & Data Analytics; 3+ years building dashboards, pipelines, and statistical models.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Get in Touch</a>
+        </div>
+      </div>
+      <img class="hero-img" src="assets/hero-placeholder.png" alt="Analytics dashboard preview" />
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>Featured Projects</h2>
+
+      <div class="grid">
+        <article class="card">
+          <img src="assets/powerbi-placeholder.png" alt="Sales Analytics Dashboard" />
+          <div class="card-body">
+            <h3>Sales Analytics Dashboard (Power BI)</h3>
+            <p>Interactive filters, KPI cards, and YoY time‑intelligence DAX. Built with sample data for safe public sharing.</p>
+            <div class="tags"><span>Power BI</span><span>DAX</span><span>Time Intelligence</span></div>
+            <div class="links">
+              <a class="btn small" href="https://github.com/Lillian-Elek-Data-Portfolio/powerbi-sales-analytics" target="_blank">Repo</a>
+              <a class="btn small outline" href="#" target="_blank" aria-disabled="true">Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/python-placeholder.png" alt="Customer Churn Prediction" />
+          <div class="card-body">
+            <h3>Customer Churn Prediction (Python)</h3>
+            <p>End‑to‑end ML pipeline with feature engineering and evaluation. Demonstrates modeling workflow and metrics.</p>
+            <div class="tags"><span>Python</span><span>pandas</span><span>scikit‑learn</span></div>
+            <div class="links">
+              <a class="btn small" href="https://github.com/Lillian-Elek-Data-Portfolio/python-customer-churn" target="_blank">Repo</a>
+              <a class="btn small outline" href="#" target="_blank" aria-disabled="true">Report</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/sql-placeholder.png" alt="AdventureWorks Business Analysis" />
+          <div class="card-body">
+            <h3>AdventureWorks Business Analysis (SQL)</h3>
+            <p>Window functions, CTEs, and KPI queries for revenue, cohort retention, and regional performance.</p>
+            <div class="tags"><span>SQL</span><span>CTEs</span><span>Window Functions</span></div>
+            <div class="links">
+              <a class="btn small" href="https://github.com/Lillian-Elek-Data-Portfolio/sql-adventureworks" target="_blank">Repo</a>
+              <a class="btn small outline" href="#" target="_blank" aria-disabled="true">Case Study</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <ul class="pill-list">
+        <li>SQL (T‑SQL, performance tuning, CTEs, window functions)</li>
+        <li>Python (pandas, scikit‑learn, matplotlib)</li>
+        <li>Power BI (DAX, Power Query, interactive dashboards)</li>
+        <li>Azure Data Factory & Pipelines (ETL/ELT)</li>
+        <li>Statistics & Modeling (regression, classification, forecasting)</li>
+        <li>Data storytelling & stakeholder reporting</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container about-inner">
+      <div>
+        <h2>About</h2>
+        <p>I’m a data analyst in Colorado with a focus on clean‑energy and SaaS analytics. I build reliable data pipelines and decision‑ready dashboards that help teams move faster and make better choices.</p>
+        <p>Outside of work, I love high‑alpine adventures and photography — the same curiosity and discipline show up in my data work.</p>
+      </div>
+      <img src="assets/profile-placeholder.png" alt="Portrait of Lillian Elek" />
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container contact-inner">
+      <div>
+        <h2>Contact</h2>
+        <p>Want to collaborate or see more? Reach out anytime.</p>
+        <ul class="contact-list">
+          <li><strong>Email:</strong> your@email.com</li>
+          <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/lillian-elek" target="_blank">linkedin.com/in/lillian-elek</a></li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/Lillian-Elek-Data-Portfolio" target="_blank">github.com/Lillian-Elek-Data-Portfolio</a></li>
+        </ul>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/mayvlqrp" method="POST">
+        <label>Your email <input type="email" name="email" required /></label>
+        <label>Message <textarea name="message" rows="4" required></textarea></label>
+        <button class="btn primary" type="submit">Send</button>
+        <p class="form-note">This form uses Formspree. Replace the action URL with your own endpoint if needed.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
