@@ -14,6 +14,7 @@
   <!-- Font Awesome (icons) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
 
+
   <!-- Your site styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -54,37 +55,41 @@
   </div>
 </section>
 
-
+<!-- Contact details -->
 <section id="contact" class="contact section">
   <div class="container">
-    <div class="contact-wrap">
-      <!-- Left: contact details -->
-      <div class="contact-card">
-        <h2>Contact</h2>
-        <p class="muted">Want to collaborate or see more? Reach out anytime.</p>
-        <ul class="contact-list">
-          <li><strong>Email:</strong> <a href="mailto:lillianelek@gmail.com">lillianelek@gmail.com</a></li>
-          <li><strong>LinkedIn:</strong> <a target="_blank" href="https://www.linkedin.com/in/lillian-elek-4069a552">linkedin.com/in/lillian-elek-4069a552</a></li>
-          <li><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Lillian-Elek-Data">github.com/Lillian-Elek-Data</a></li>
-        </ul>
-      </div>
+    <div class="contact-card simple">
+      <h2>Contact</h2>
+      <p class="muted">Want to collaborate or see more? Reach out anytime.</p>
 
-      <!-- Right: form -->
-      <form class="form-card" action="https://formspree.io/f/mayvlqrp" method="POST" novalidate>
-        <label>Email
-          <input type="email" name="email" placeholder="you@example.com" required>
-        </label>
-        <label>Message
-          <textarea name="message" rows="5" placeholder="Hi Lillian, I'd love to chat about..." required></textarea>
-        </label>
-        <button class="btn primary" type="submit">Send</button>
-        <p class="form-note">This form uses Formspree. Replace the action URL with your own if needed.</p>
-      </form>
+      <ul class="contact-list icons">
+        <li>
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <a href="mailto:lillianelek@gmail.com">lillianelek@gmail.com</a>
+        </li>
+        <li>
+          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+          <a href="https://www.linkedin.com/in/lillian-elek-4069a552" target="_blank" rel="noopener">
+            linkedin.com/in/lillian-elek
+          </a>
+        </li>
+        <li>
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <a href="https://github.com/Lillian-Elek-Data" target="_blank" rel="noopener">
+            github.com/Lillian-Elek-Data
+          </a>
+        </li>
+        <li>
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          Colorado, USA
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
 
+<!-- Footer -->
 <footer class="site-footer">
   <div class="container legal">
     <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
