@@ -102,24 +102,22 @@ a:hover{ text-decoration:underline }
 .contact-list.icons i{ color:var(--accent2); width:18px; flex:0 0 18px; text-align:center }
 
 /* Footer contact grid — card style */
-.site-footer { border-top: 1px solid var(--line); padding: 28px 0 16px; }
+.site-footer { border-top: 1px solid var(--line); padding: 24px 0 16px; }
 .footer-contacts {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   align-items: start;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .contact-method {
   background: var(--card);
   border: 1px solid #1f2435;
   border-radius: 14px;
   padding: 14px;
-  box-shadow: 0 10px 24px rgba(0,0,0,.12);
 }
 .contact-method h3 { margin: 8px 0 6px; font-size: 14px; color: #cfd5e6; }
-.contact-method i { font-size: 18px; color: var(--accent2); margin-right: 8px; }
-.contact-method a { color: var(--text); }
+.contact-method i { font-size: 18px; color: var(--accent2); margin-right: 6px; }
 
 .legal { text-align: center; color: #9aa3b8; }
 
