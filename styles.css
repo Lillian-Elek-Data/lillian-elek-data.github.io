@@ -101,16 +101,28 @@ a:hover{ text-decoration:underline }
 }
 .contact-list.icons i{ color:var(--accent2); width:18px; flex:0 0 18px; text-align:center }
 
-/* Footer — compact (no duplicate contact tiles if using contact section above) */
-.site-footer{ border-top:1px solid var(--line); padding:24px 0 16px; color:#9aa3b8; text-align:center }
-.legal{ text-align:center; color:#9aa3b8 }
+/* Footer contact grid — card style */
+.site-footer { border-top: 1px solid var(--line); padding: 28px 0 16px; }
+.footer-contacts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+.contact-method {
+  background: var(--card);
+  border: 1px solid #1f2435;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+.contact-method h3 { margin: 8px 0 6px; font-size: 14px; color: #cfd5e6; }
+.contact-method i { font-size: 18px; color: var(--accent2); margin-right: 8px; }
+.contact-method a { color: var(--text); }
+
+.legal { text-align: center; color: #9aa3b8; }
 
 /* Responsive */
-@media (max-width:1000px){
-  .grid.cards-3{ grid-template-columns:1fr 1fr }
-  .hero-inner, .split{ grid-template-columns:1fr }
-}
-@media (max-width:640px){
-  .grid.cards-3, .grid.cards-2{ grid-template-columns:1fr }
-  .hero h1{ font-size:34px }
-}
+@media (max-width: 1000px) { .footer-contacts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px)  { .footer-contacts { grid-template-columns: 1fr; } }
