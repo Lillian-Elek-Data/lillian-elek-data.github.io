@@ -107,7 +107,7 @@ a:hover{ text-decoration:underline }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  align-items: start;
+  align-items: center;
   margin-bottom: 8px;
 }
 .contact-method {
