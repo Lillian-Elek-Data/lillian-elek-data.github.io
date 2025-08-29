@@ -62,7 +62,7 @@ a:hover{ text-decoration:underline }
   overflow:hidden; display:flex; flex-direction:column
 }
 /* Important: fixed thumbnail height so text never duplicates/overflows */
-.card img{ width:100%; height:210px; object-fit:cover } /* was 100% — that caused layout issues */
+.card img{ width:100%; height:100%; object-fit:cover } 
 .card-body{ padding:18px }
 .card-body h3{ margin:0 0 6px; font-size:20px }
 .card-body p{ color:var(--muted); margin:0 0 10px }
