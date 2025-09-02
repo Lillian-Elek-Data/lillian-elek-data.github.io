@@ -33,8 +33,8 @@
     <!-- Main nav -->
     <nav id="nav-menu" class="nav-menu">
       <!-- set .active per page -->
-      <a href="index.html" class="active">Home</a>
-      <a href="projects.html">Projects</a>
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
       <a href="about.html">About</a>
       <a class="btn" href="about.html#contact">Contact</a>
     </nav>
@@ -93,7 +93,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-tags="python">
         <img src="assets/python-weather-ols.png" alt="Cloud-to-Code: Ordinary Least Squares for Weather">
         <div class="card-body">
           <h3>Cloud-to-Code: Ordinary Least Squares for Weather (Python)</h3>
@@ -207,7 +207,6 @@
     <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
   </div>
 </footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
 
 <script>
@@ -240,41 +239,6 @@
 </script>
 
 
-<script>
-  // True filtering: hide non-matches using the HTML "hidden" attribute
-  (function () {
-    const grid   = document.getElementById('projectsGrid');
-    const cards  = Array.from(grid.querySelectorAll('.card'));
-    const btns   = Array.from(document.querySelectorAll('.filter'));
-
-    function normalizeTags(el) {
-      // supports "powerbi python" OR "powerbi,python" OR "powerbi, python"
-      return (el.dataset.tags || '')
-        .toLowerCase()
-        .split(/[\s,]+/)
-        .filter(Boolean);
-    }
-
-    function applyFilter(tag) {
-      cards.forEach(card => {
-        const tags = normalizeTags(card);
-        const show = (tag === 'all') || tags.includes(tag);
-        card.toggleAttribute('hidden', !show); // <-- hard hide
-      });
-    }
-
-    // init: "All"
-    applyFilter('all');
-
-    btns.forEach(b => {
-      b.addEventListener('click', () => {
-        btns.forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        applyFilter(b.dataset.tag.toLowerCase());
-      });
-    });
-  })();
-</script>
 
 
 </body>
