@@ -167,7 +167,6 @@
         </div>
       </article>
 
-
     </div>
   </div>
 </section>
@@ -239,6 +238,44 @@
   // keep your year script if you have it:
   const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 </script>
+
+
+<script>
+  // True filtering: hide non-matches using the HTML "hidden" attribute
+  (function () {
+    const grid   = document.getElementById('projectsGrid');
+    const cards  = Array.from(grid.querySelectorAll('.card'));
+    const btns   = Array.from(document.querySelectorAll('.filter'));
+
+    function normalizeTags(el) {
+      // supports "powerbi python" OR "powerbi,python" OR "powerbi, python"
+      return (el.dataset.tags || '')
+        .toLowerCase()
+        .split(/[\s,]+/)
+        .filter(Boolean);
+    }
+
+    function applyFilter(tag) {
+      cards.forEach(card => {
+        const tags = normalizeTags(card);
+        const show = (tag === 'all') || tags.includes(tag);
+        card.toggleAttribute('hidden', !show); // <-- hard hide
+      });
+    }
+
+    // init: "All"
+    applyFilter('all');
+
+    btns.forEach(b => {
+      b.addEventListener('click', () => {
+        btns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        applyFilter(b.dataset.tag.toLowerCase());
+      });
+    });
+  })();
+</script>
+
 
 </body>
 </html>

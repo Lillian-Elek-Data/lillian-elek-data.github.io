@@ -82,6 +82,9 @@ a:hover{ text-decoration:underline }
 .tags span{ font-size:12px; padding:6px 8px; background:#171b28; border:1px solid #27304a; border-radius:999px; color:#c1c8d7 }
 .links{ display:flex; gap:8px; flex-wrap:wrap }
 
+/* Ensure hidden cards vanish in all layouts */
+.card[hidden] { display: none !important; }
+
 /* Lists / Split */
 .pill-list{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; padding:0; list-style:none }
 .pill-list li{ background:#121623; border:1px solid #1f2435; padding:12px 14px; border-radius:12px; color:#d7dcef }
