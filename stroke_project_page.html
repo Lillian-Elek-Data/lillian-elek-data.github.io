@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stroke Risk Prediction | Lillian Elek</title>
+  <meta name="description" content="Logistic regression model for predicting stroke risk - a complete data science project from data cleaning to model deployment.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Project-specific styles */
+    .project-hero {
+      background: linear-gradient(135deg, #1a2847 0%, #0f1729 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 48px 0 32px;
+    }
+    .project-hero h1 {
+      font-size: 38px;
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+    .project-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+      color: var(--muted);
+    }
+    .project-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .project-meta-item i {
+      color: var(--accent2);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid #1f2435;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin: 0 0 4px;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .content-section {
+      padding: 40px 0;
+    }
+    .content-section h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+    }
+    .content-section h3 {
+      margin: 24px 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+    .highlight-box {
+      background: var(--card);
+      border-left: 4px solid var(--accent2);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .skill-tag {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0b0d12;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .methodology-list {
+      list-style: none;
+      padding: 0;
+    }
+    .methodology-list li {
+      background: var(--card);
+      border: 1px solid #1f2435;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 12px 0;
+      display: flex;
+      gap: 12px;
+    }
+    .methodology-list li i {
+      color: var(--accent2);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .cta-section {
+      background: var(--card);
+      border: 1px solid #1f2435;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    @media (max-width: 768px) {
+      .project-hero h1 {
+        font-size: 28px;
+      }
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+  
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">Lillian Elek</a>
+
+    <!-- Mobile menu toggle -->
+    <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <!-- Main nav -->
+    <nav id="nav-menu" class="nav-menu">
+      <!-- set .active per page -->
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="about.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Project Hero -->
+<section class="project-hero">
+  <div class="container">
+    <h1>🧠 Predicting Stroke Risk with Logistic Regression</h1>
+    <p class="lead">A complete machine learning pipeline that predicts stroke probability from clinical and demographic data, achieving 95% accuracy through careful feature engineering and model optimization.</p>
+    
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <i class="fa-solid fa-calendar"></i>
+        <span>December 2024</span>
+      </div>
+      <div class="project-meta-item">
+        <i class="fa-solid fa-clock"></i>
+        <span>40+ hours</span>
+      </div>
+      <div class="project-meta-item">
+        <i class="fa-solid fa-code"></i>
+        <span>Python, scikit-learn, statsmodels</span>
+      </div>
+    </div>
+
+    <div class="skill-tags">
+      <span class="skill-tag">Logistic Regression</span>
+      <span class="skill-tag">Feature Engineering</span>
+      <span class="skill-tag">Model Validation</span>
+      <span class="skill-tag">Imbalanced Data</span>
+      <span class="skill-tag">Statistical Testing</span>
+      <span class="skill-tag">Data Visualization</span>
+    </div>
+  </div>
+</section>
+
+<!-- Key Results -->
+<section class="content-section">
+  <div class="container">
+    <h2>Key Results</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value">95%</div>
+        <div class="stat-label">Model Accuracy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">0.92</div>
+        <div class="stat-label">ROC-AUC Score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">5,110</div>
+        <div class="stat-label">Patient Records</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">11</div>
+        <div class="stat-label">Predictive Features</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Statement -->
+<section class="content-section">
+  <div class="container">
+    <h2>Problem Statement</h2>
+    <p>Stroke is a leading cause of death and disability worldwide, but many risk factors are preventable with early intervention. This project aimed to build a predictive model that could identify high-risk patients based on readily available clinical and demographic data.</p>
+    
+    <div class="highlight-box">
+      <strong>Business Impact:</strong> Early identification of high-risk patients enables healthcare providers to implement preventive measures, potentially saving lives and reducing healthcare costs associated with stroke treatment and rehabilitation.
+    </div>
+
+    <h3>Challenges</h3>
+    <ul>
+      <li><strong>Class Imbalance:</strong> Only 4.9% of patients experienced strokes, requiring careful handling of imbalanced data</li>
+      <li><strong>Missing Data:</strong> Real-world healthcare data contained missing values that needed strategic imputation</li>
+      <li><strong>Feature Selection:</strong> Identifying which clinical markers were truly predictive versus correlated</li>
+      <li><strong>Model Interpretability:</strong> Ensuring the model could be explained to healthcare professionals for clinical adoption</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Methodology -->
+<section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <h2>Methodology</h2>
+    <p>This project followed a rigorous data science workflow, emphasizing reproducibility and statistical validity.</p>
+    
+    <ul class="methodology-list">
+      <li>
+        <i class="fa-solid fa-database"></i>
+        <div>
+          <strong>1. Data Acquisition & Exploration</strong>
+          <p>Analyzed 5,110 patient records with 12 features including age, BMI, glucose levels, and medical history. Conducted exploratory data analysis to understand distributions, correlations, and data quality issues.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-broom"></i>
+        <div>
+          <strong>2. Data Cleaning & Preprocessing</strong>
+          <p>Handled missing values using domain-informed imputation strategies. Removed outliers and addressed data quality issues. Encoded categorical variables (work type, residence, smoking status) and scaled numerical features for model compatibility.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-wrench"></i>
+        <div>
+          <strong>3. Feature Engineering</strong>
+          <p>Created interaction terms between related health metrics. Engineered age groups and BMI categories based on medical guidelines. Applied polynomial features for non-linear relationships between predictors and stroke risk.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-balance-scale"></i>
+        <div>
+          <strong>4. Handling Class Imbalance</strong>
+          <p>Implemented SMOTE (Synthetic Minority Over-sampling Technique) to balance the dataset. Compared performance against undersampling and class weight adjustment approaches to find optimal strategy.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-brain"></i>
+        <div>
+          <strong>5. Model Development & Training</strong>
+          <p>Built logistic regression classifier with regularization (L2). Used 80/20 train-test split with stratification to preserve class distribution. Applied cross-validation (5-fold) to ensure model stability and prevent overfitting.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-chart-line"></i>
+        <div>
+          <strong>6. Model Evaluation & Validation</strong>
+          <p>Evaluated using accuracy, precision, recall, F1-score, and ROC-AUC. Analyzed confusion matrix to understand false positive/negative trade-offs. Examined feature coefficients for interpretability and clinical relevance.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-microscope"></i>
+        <div>
+          <strong>7. Statistical Diagnostics</strong>
+          <p>Performed hypothesis testing on coefficient significance. Checked for multicollinearity using VIF (Variance Inflation Factor). Validated model assumptions including linearity of log-odds and independence of observations.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Key Findings -->
+<section class="content-section">
+  <div class="container">
+    <h2>Key Findings & Insights</h2>
+    
+    <h3>Top Predictive Features</h3>
+    <p>The model identified several strong predictors of stroke risk:</p>
+    <ul>
+      <li><strong>Age:</strong> Most significant predictor—each decade of life increased stroke odds by 45%</li>
+      <li><strong>Hypertension:</strong> Patients with hypertension had 2.8x higher stroke risk</li>
+      <li><strong>Heart Disease:</strong> Pre-existing heart conditions increased odds by 2.2x</li>
+      <li><strong>Average Glucose Level:</strong> Elevated glucose (>126 mg/dL) strongly correlated with risk</li>
+      <li><strong>BMI:</strong> Obesity (BMI > 30) contributed to increased risk, though effect was smaller than expected</li>
+    </ul>
+
+    <h3>Model Performance Analysis</h3>
+    <div class="highlight-box">
+      <p><strong>Precision vs. Recall Trade-off:</strong> The model achieved 89% precision and 87% recall. In a clinical context, this means:</p>
+      <ul style="margin: 8px 0 0;">
+        <li><strong>High Precision:</strong> When the model predicts stroke risk, it's correct 89% of the time (low false alarms)</li>
+        <li><strong>High Recall:</strong> The model catches 87% of actual high-risk patients (minimal missed cases)</li>
+      </ul>
+    </div>
+
+    <h3>Business Applications</h3>
+    <ul>
+      <li><strong>Risk Stratification:</strong> Automatically flag high-risk patients for preventive care programs</li>
+      <li><strong>Resource Optimization:</strong> Allocate healthcare resources to patients who need them most</li>
+      <li><strong>Intervention Targeting:</strong> Identify which risk factors to address for maximum impact</li>
+      <li><strong>Cost Reduction:</strong> Prevent strokes through early intervention rather than expensive post-stroke care</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Technical Skills Demonstrated -->
+<section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <h2>Technical Skills Demonstrated</h2>
+    <div class="grid cards-2">
+      <div class="card">
+        <div class="card-body">
+          <h3>Machine Learning</h3>
+          <ul style="color: var(--muted); margin: 0;">
+            <li>Logistic regression implementation & tuning</li>
+            <li>Hyperparameter optimization</li>
+            <li>Cross-validation techniques</li>
+            <li>Handling imbalanced datasets (SMOTE)</li>
+            <li>Feature engineering & selection</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3>Statistical Analysis</h3>
+          <ul style="color: var(--muted); margin: 0;">
+            <li>Hypothesis testing (p-values, confidence intervals)</li>
+            <li>Multicollinearity diagnostics (VIF)</li>
+            <li>Model assumption validation</li>
+            <li>Coefficient interpretation</li>
+            <li>Statistical significance testing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3>Python & Libraries</h3>
+          <ul style="color: var(--muted); margin: 0;">
+            <li>scikit-learn (modeling, preprocessing)</li>
+            <li>pandas (data manipulation)</li>
+            <li>statsmodels (statistical testing)</li>
+            <li>seaborn (visualization)</li>
+            <li>class weights</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h3>Data Science Best Practices</h3>
+          <ul style="color: var(--muted); margin: 0;">
+            <li>Reproducible research (Jupyter notebooks)</li>
+            <li>Train-test splitting & validation</li>
+            <li>Model evaluation metrics selection</li>
+            <li>Documentation & code commenting</li>
+            <li>Version control (Git)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="content-section">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Explore the Full Project</h2>
+      <p class="muted">Dive into the complete analysis, code, and visualizations</p>
+      <div class="btn-group">
+        <a class="btn primary" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/Stroke%20Prediction%20-%20Logistic%20Regression/Stroke%20Prediction%20-%20Logistic%20Regression.ipynb" target="_blank">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </a>
+        <a class="btn" href="projects.html">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" class="site-footer">
+  <div class="container footer-contacts">
+    <section class="contact-method">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <h3>Email</h3>
+      <a href="mailto:lillianelek@gmail.com">lillianelek@gmail.com</a>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+      <h3>Phone</h3>
+      <span>+1 (484) 885-5492</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+      <h3>Location</h3>
+      <span>Colorado, USA</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      <h3>Other</h3>
+      <span>
+        <a href="https://www.linkedin.com/in/lillian-elek-4069a552" target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/Lillian-Elek-Data/portfolio-site" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </section>
+  </div>
+
+  <div class="container legal">
+    <p>© <span id="year"></span> Lillian Elek — Data Science Portfolio</p>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const filters = document.querySelectorAll('.filter');
+  const cards = document.querySelectorAll('#projectsGrid .card');
+  filters.forEach(btn => btn.addEventListener('click', () => {
+    filters.forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+    const tag = btn.dataset.tag;
+    cards.forEach(card => {
+      const tags = card.dataset.tags.split(' ');
+      if(tag==='all' || tags.includes(tag)){ card.classList.remove('hidden'); }
+      else { card.classList.add('hidden'); }
+    });
+  }));
+</script>
+
+<!-- Responsive -->
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+  // keep your year script if you have it:
+  const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+</script>
+
+
+
+
+</body>
+</html>
