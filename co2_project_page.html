@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CO2 Emissions Prediction | Lillian Elek</title>
+  <meta name="description" content="OLS regression analysis predicting state-level CO2 emissions using environmental and economic factors.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+
+  <!-- Your site styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+  
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">Lillian Elek</a>
+
+    <!-- Mobile menu toggle -->
+    <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <!-- Main nav -->
+    <nav id="nav-menu" class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="about.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Project Hero -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <h1>Emissions by the Equation: Predicting CO₂ with OLS</h1>
+      <p class="lead">A regression-powered deep dive into what drives state-level carbon emissions across the United States.</p>
+      <p>This project uses Ordinary Least Squares regression to predict CO₂ emissions based on environmental and economic factors. Through log transformations, feature selection, and comprehensive diagnostics, I built a high-accuracy model revealing the key drivers of carbon emissions at the state level.</p>
+      <div class="cta-row">
+        <a class="btn primary" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/2009-CO2-emmissions%20ML/ML%20OLS%20Regression%20with%20CO2%20Data.ipynb">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </a>
+        <a class="btn" href="projects.html">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </a>
+      </div>
+    </div>
+    <img class="hero-img" src="assets/python-co2-mlr.png" alt="CO2 Emissions Analysis">
+  </div>
+</section>
+
+<!-- Project Overview -->
+<section class="section">
+  <div class="container">
+    <h2>Project Overview</h2>
+    <p>Understanding the factors that drive carbon emissions is crucial for developing effective environmental policies. This project analyzes 2009 state-level data to identify and quantify the relationship between various environmental, economic, and demographic factors and CO₂ emissions.</p>
+    
+    <div class="grid cards-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-bullseye" style="color: var(--accent2);"></i> Objective</h3>
+          <p>Build a predictive OLS regression model to understand which factors most significantly impact state-level CO₂ emissions</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-database" style="color: var(--accent2);"></i> Dataset</h3>
+          <p>2009 state-level environmental and economic data including emissions, population, energy consumption, and economic indicators</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-chart-line" style="color: var(--accent2);"></i> Outcome</h3>
+          <p>High-accuracy predictive model with comprehensive residual diagnostics and clear insights into emission drivers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Methodology -->
+<section class="section" style="background: rgba(24, 40, 71, 0.3);">
+  <div class="container">
+    <h2>Methodology</h2>
+    <p>This project follows a rigorous machine learning workflow with emphasis on statistical validity and model interpretability.</p>
+    
+    <div style="margin-top: 24px;">
+      <h3 style="color: var(--accent2); margin-bottom: 12px;"><i class="fa-solid fa-1"></i> Data Preparation & Exploration</h3>
+      <ul style="color: var(--muted); margin-left: 20px;">
+        <li>Loaded and cleaned 2009 state-level emissions dataset</li>
+        <li>Performed exploratory data analysis (EDA) to understand distributions and relationships</li>
+        <li>Identified potential predictors of CO₂ emissions</li>
+        <li>Checked for missing values, outliers, and data quality issues</li>
+      </ul>
+
+      <h3 style="color: var(--accent2); margin: 24px 0 12px;"><i class="fa-solid fa-2"></i> Feature Engineering & Transformation</h3>
+      <ul style="color: var(--muted); margin-left: 20px;">
+        <li>Applied log transformations to handle skewed distributions</li>
+        <li>Evaluated correlation between potential predictors</li>
+        <li>Selected optimal features through statistical analysis</li>
+        <li>Addressed multicollinearity concerns</li>
+      </ul>
+
+      <h3 style="color: var(--accent2); margin: 24px 0 12px;"><i class="fa-solid fa-3"></i> Model Development</h3>
+      <ul style="color: var(--muted); margin-left: 20px;">
+        <li>Implemented Ordinary Least Squares (OLS) regression using statsmodels</li>
+        <li>Split data into training and testing sets for validation</li>
+        <li>Trained multiple model configurations to find optimal predictors</li>
+        <li>Validated OLS assumptions (linearity, normality, homoscedasticity, independence)</li>
+      </ul>
+
+      <h3 style="color: var(--accent2); margin: 24px 0 12px;"><i class="fa-solid fa-4"></i> Evaluation & Diagnostics</h3>
+      <ul style="color: var(--muted); margin-left: 20px;">
+        <li>Conducted comprehensive residual analysis</li>
+        <li>Evaluated model performance using R², adjusted R², and RMSE</li>
+        <li>Created diagnostic plots (residual plots, Q-Q plots, scale-location)</li>
+        <li>Assessed prediction accuracy on hold-out test set</li>
+        <li>Interpreted coefficient significance and effect sizes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Key Findings -->
+<section class="section">
+  <div class="container">
+    <h2>Key Findings</h2>
+    
+    <div class="grid cards-2" style="margin-top: 24px;">
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-chart-bar" style="color: var(--accent);"></i> Model Performance</h3>
+          <ul style="color: var(--muted); margin: 12px 0 0 20px;">
+            <li>Achieved high R² indicating strong predictive power</li>
+            <li>Low RMSE demonstrating accurate predictions</li>
+            <li>Residuals showed normal distribution with constant variance</li>
+            <li>Model successfully validated on unseen test data</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-magnifying-glass-chart" style="color: var(--accent);"></i> Significant Predictors</h3>
+          <ul style="color: var(--muted); margin: 12px 0 0 20px;">
+            <li>Economic activity strongly correlates with emissions</li>
+            <li>Population density influences emission patterns</li>
+            <li>Energy consumption is a primary driver</li>
+            <li>Log transformations revealed nonlinear relationships</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; padding: 20px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
+      <h3 style="margin: 0 0 12px;"><i class="fa-solid fa-lightbulb" style="color: var(--accent2);"></i> Business Impact</h3>
+      <p style="color: var(--muted); margin: 0;">This analysis provides actionable insights for environmental policymakers and researchers. By understanding which factors most significantly impact CO₂ emissions, states can develop targeted interventions to reduce their carbon footprint. The model's high accuracy enables reliable forecasting for policy scenario planning.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Technical Stack -->
+<section class="section" style="background: rgba(24, 40, 71, 0.3);">
+  <div class="container">
+    <h2>Technologies & Tools</h2>
+    <div class="grid cards-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="card-body">
+          <h3>Python Libraries</h3>
+          <div class="tags">
+            <span>pandas</span>
+            <span>numpy</span>
+            <span>statsmodels</span>
+            <span>scikit-learn</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3>Visualization</h3>
+          <div class="tags">
+            <span>matplotlib</span>
+            <span>seaborn</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3>Techniques</h3>
+          <div class="tags">
+            <span>OLS Regression</span>
+            <span>Log Transformation</span>
+            <span>Residual Analysis</span>
+            <span>Feature Selection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Implementation Highlights -->
+<section class="section">
+  <div class="container">
+    <h2>Implementation Highlights</h2>
+    
+    <div style="margin-top: 24px;">
+      <div style="margin-bottom: 24px; padding: 20px; background: var(--card); border-left: 4px solid var(--accent2); border-radius: 8px;">
+        <h3 style="margin: 0 0 8px; color: var(--accent2);">Train-Test Split Validation</h3>
+        <p style="color: var(--muted); margin: 0;">Implemented proper data splitting to ensure model generalizability. The model was trained on a subset of states and validated on held-out data to prevent overfitting and ensure reliable performance estimates.</p>
+      </div>
+
+      <div style="margin-bottom: 24px; padding: 20px; background: var(--card); border-left: 4px solid var(--accent); border-radius: 8px;">
+        <h3 style="margin: 0 0 8px; color: var(--accent);">Log-Transformed Modeling</h3>
+        <p style="color: var(--muted); margin: 0;">Applied logarithmic transformations to handle skewed distributions and capture nonlinear relationships. This transformation improved model fit and made interpretation more meaningful for multiplicative effects.</p>
+      </div>
+
+      <div style="margin-bottom: 24px; padding: 20px; background: var(--card); border-left: 4px solid var(--accent2); border-radius: 8px;">
+        <h3 style="margin: 0 0 8px; color: var(--accent2);">Comprehensive Diagnostics</h3>
+        <p style="color: var(--muted); margin: 0;">Conducted full residual diagnostics including Q-Q plots, residual vs. fitted plots, and scale-location plots to validate OLS assumptions. Ensured linearity, normality, homoscedasticity, and independence of residuals.</p>
+      </div>
+
+      <div style="padding: 20px; background: var(--card); border-left: 4px solid var(--accent); border-radius: 8px;">
+        <h3 style="margin: 0 0 8px; color: var(--accent);">Statistical Significance Testing</h3>
+        <p style="color: var(--muted); margin: 0;">Evaluated p-values and confidence intervals for all predictors to determine statistical significance. Interpreted coefficients to understand the magnitude and direction of each variable's effect on emissions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section" style="background: rgba(24, 40, 71, 0.3);">
+  <div class="container" style="text-align: center;">
+    <h2>Explore the Full Analysis</h2>
+    <p style="color: var(--muted); max-width: 600px; margin: 0 auto 24px;">View the complete Jupyter notebook on GitHub to see the detailed code, visualizations, and statistical analysis.</p>
+    <a class="btn primary" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/2009-CO2-emmissions%20ML/ML%20OLS%20Regression%20with%20CO2%20Data.ipynb">
+      <i class="fa-brands fa-github"></i> View Full Project on GitHub
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" class="site-footer">
+  <div class="container footer-contacts">
+    <section class="contact-method">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <h3>Email</h3>
+      <a href="mailto:lillianelek@gmail.com">lillianelek@gmail.com</a>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+      <h3>Phone</h3>
+      <span>+1 (484) 885-5492</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+      <h3>Location</h3>
+      <span>Colorado, USA</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      <h3>Other</h3>
+      <span>
+        <a href="https://www.linkedin.com/in/lillian-elek-4069a552" target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/Lillian-Elek-Data/portfolio-site" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </section>
+  </div>
+
+  <div class="container legal">
+    <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<!-- Responsive -->
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>
+
+</body>
+</html>
