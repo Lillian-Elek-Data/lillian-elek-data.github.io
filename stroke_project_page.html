@@ -45,7 +45,7 @@
 <section class="project-hero">
   <div class="container">
     <h1>🧠 Predicting Stroke Risk with Logistic Regression</h1>
-    <p class="lead">A complete machine learning pipeline that predicts stroke probability from clinical and demographic data, achieving 95% accuracy through careful feature engineering and model optimization.</p>
+    <p class="lead">A complete machine learning pipeline that predicts stroke probability from clinical and demographic data. The model prioritizes high recall (80% sensitivity) to catch actual stroke cases, making it suitable as a screening tool for preventive healthcare programs.</p>
     
     <div class="project-meta">
       <div class="project-meta-item">
@@ -79,20 +79,20 @@
     <h2>Key Results</h2>
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-value">80%</div>
-        <div class="stat-label">Model Recall</div>
+        <div class="stat-value">73%</div>
+        <div class="stat-label">Overall Accuracy</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value">83.7%</div>
-        <div class="stat-label">ROC-AUC Score</div>
+        <div class="stat-value">80%</div>
+        <div class="stat-label">Recall (Sensitivity)</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">5,109</div>
         <div class="stat-label">Patient Records</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value">11</div>
-        <div class="stat-label">Initial Predictive Features</div>
+        <div class="stat-value">4.9%</div>
+        <div class="stat-label">Stroke Incidence Rate</div>
       </div>
     </div>
   </div>
@@ -169,7 +169,7 @@
         <i class="fa-solid fa-microscope"></i>
         <div>
           <strong>6. Statistical Diagnostics</strong>
-          <p>Performed hypothesis testing on coefficient significance. Checked for multicollinearity using VIF (Variance Inflation Factor). Validated model assumptions including linearity of log-odds and independence of observations.</p>
+          <p>Performed hypothesis testing on coefficient significance. Checked for multicollinearity using VIF (Variance Inflation Factor). Validated model assumptions including linearity of log-odds.</p>
         </div>
       </li>
 
@@ -192,28 +192,37 @@
     <h3>Top Predictive Features</h3>
     <p>The model identified several strong predictors of stroke risk:</p>
     <ul>
-      <li><strong>Age:</strong> Most significant predictor—each decade of life increased stroke odds by 45%</li>
-      <li><strong>Hypertension:</strong> Patients with hypertension had 2.8x higher stroke risk</li>
-      <li><strong>Heart Disease:</strong> Pre-existing heart conditions increased odds by 2.2x</li>
-      <li><strong>Average Glucose Level:</strong> Elevated glucose (>126 mg/dL) strongly correlated with risk</li>
-      <li><strong>BMI:</strong> Obesity (BMI > 30) contributed to increased risk, though effect was smaller than expected</li>
+      <li><strong>Age:</strong> Most significant predictor—each standard deviation increase associated with a 5.9x increase in stroke odds.</li>
+      <li><strong>Hypertension:</strong> Patients with hypertension nearly doubles stroke odds</li>
+      <li><strong>Average Glucose Level:</strong> Elevated glucose shows a smaller but positive association</li>
     </ul>
 
     <h3>Model Performance Analysis</h3>
     <div class="highlight-box">
-      <p><strong>Precision vs. Recall Trade-off:</strong> The model achieved 89% precision and 87% recall. In a clinical context, this means:</p>
+      <p><strong>Precision vs. Recall Trade-off:</strong> The model achieved 73% overall accuracy with a deliberate bias toward sensitivity. Breaking down the stroke prediction performance:</p>
       <ul style="margin: 8px 0 0;">
-        <li><strong>High Precision:</strong> When the model predicts stroke risk, it's correct 89% of the time (low false alarms)</li>
-        <li><strong>High Recall:</strong> The model catches 87% of actual high-risk patients (minimal missed cases)</li>
+        <li><strong>Recall (80%):</strong> The model successfully identifies 4 out of 5 patients who will actually experience a stroke—critical for early intervention</li>
+        <li><strong>Precision (13%):</strong> When the model flags a patient as high-risk, it's correct 13% of the time, resulting in false alarms for preventive screening</li>
+        <li><strong>Clinical Context:</strong> In healthcare screening, this trade-off prioritizes catching actual stroke cases over minimizing false positives. Missing a real stroke (false negative) has far more serious consequences than flagging a low-risk patient for additional screening (false positive)</li>
+        <li><strong>No Stroke Class (99% precision, 72% recall):</strong> The model is highly reliable at identifying low-risk patients, correctly clearing 99% of patients it flags as low-risk</li>
       </ul>
     </div>
 
+    <h3>Addressing the Class Imbalance Challenge</h3>
+    <p>With only 4.9% of patients experiencing strokes in the dataset (50 stroke cases vs. 972 no-stroke cases), this is a highly imbalanced classification problem. The model's performance reflects a strategic decision:</p>
+    <ul>
+      <li><strong>Optimized for Recall:</strong> Used SMOTE and class weighting to ensure the minority class (stroke) isn't overlooked</li>
+      <li><strong>Acceptable False Positives:</strong> In preventive medicine, it's medically and ethically preferable to over-screen than to miss high-risk patients</li>
+      <li><strong>Next Steps for Improvement:</strong> Additional feature engineering, ensemble methods, or threshold tuning could improve precision while maintaining high recall</li>
+    </ul>
+
     <h3>Business Applications</h3>
     <ul>
-      <li><strong>Risk Stratification:</strong> Automatically flag high-risk patients for preventive care programs</li>
-      <li><strong>Resource Optimization:</strong> Allocate healthcare resources to patients who need them most</li>
-      <li><strong>Intervention Targeting:</strong> Identify which risk factors to address for maximum impact</li>
-      <li><strong>Cost Reduction:</strong> Prevent strokes through early intervention rather than expensive post-stroke care</li>
+      <li><strong>Screening Tool:</strong> Deploy as a first-pass screening system to identify patients who need comprehensive stroke risk assessment</li>
+      <li><strong>Resource Allocation:</strong> Direct preventive care resources (lifestyle counseling, medication management) to flagged patients</li>
+      <li><strong>Risk Stratification:</strong> Segment patient populations by risk level to prioritize follow-up care and monitoring frequency</li>
+      <li><strong>Early Intervention Pipeline:</strong> Integrate with clinical workflows to trigger automated alerts for high-risk patients, enabling proactive intervention</li>
+      <li><strong>Cost-Benefit Analysis:</strong> While false positives generate screening costs, catching actual strokes early prevents the far greater costs of emergency treatment and long-term disability care</li>
     </ul>
   </div>
 </section>
@@ -228,10 +237,9 @@
           <h3>Machine Learning</h3>
           <ul style="color: var(--muted); margin: 0;">
             <li>Logistic regression implementation & tuning</li>
-            <li>Hyperparameter optimization</li>
-            <li>Cross-validation techniques</li>
-            <li>Handling imbalanced datasets (SMOTE)</li>
             <li>Feature engineering & selection</li>
+            <li>Decision threshold optimization</li>
+            <li>Handling imbalanced datasets (class weights)</li>
           </ul>
         </div>
       </div>
@@ -253,9 +261,9 @@
         <div class="card-body">
           <h3>Python & Libraries</h3>
           <ul style="color: var(--muted); margin: 0;">
-            <li>scikit-learn (modeling, preprocessing)</li>
+            <li>scikit-learn (train/test split, modeling, preprocessing)</li>
             <li>pandas (data manipulation)</li>
-            <li>statsmodels (statistical testing)</li>
+            <li>statsmodels (statistical & hypothesis testing)</li>
             <li>seaborn (visualization)</li>
             <li>class weights</li>
           </ul>
