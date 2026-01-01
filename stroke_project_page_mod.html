@@ -16,6 +16,132 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Project-specific styles */
+    .project-hero {
+      background: linear-gradient(135deg, #1a2847 0%, #0f1729 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 48px 0 32px;
+    }
+    .project-hero h1 {
+      font-size: 38px;
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+    .project-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+      color: var(--muted);
+    }
+    .project-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .project-meta-item i {
+      color: var(--accent2);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid #1f2435;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin: 0 0 4px;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .content-section {
+      padding: 40px 0;
+    }
+    .content-section h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+    }
+    .content-section h3 {
+      margin: 24px 0 12px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+    .highlight-box {
+      background: var(--card);
+      border-left: 4px solid var(--accent2);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .skill-tag {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #0b0d12;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .methodology-list {
+      list-style: none;
+      padding: 0;
+    }
+    .methodology-list li {
+      background: var(--card);
+      border: 1px solid #1f2435;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 12px 0;
+      display: flex;
+      gap: 12px;
+    }
+    .methodology-list li i {
+      color: var(--accent2);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .cta-section {
+      background: var(--card);
+      border: 1px solid #1f2435;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    @media (max-width: 768px) {
+      .project-hero h1 {
+        font-size: 28px;
+      }
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
   
 <body>
@@ -50,7 +176,7 @@
     <div class="project-meta">
       <div class="project-meta-item">
         <i class="fa-solid fa-calendar"></i>
-        <span>December 2025</span>
+        <span>December 2024</span>
       </div>
       <div class="project-meta-item">
         <i class="fa-solid fa-clock"></i>
@@ -79,20 +205,20 @@
     <h2>Key Results</h2>
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-value">80%</div>
-        <div class="stat-label">Model Recall</div>
+        <div class="stat-value">95%</div>
+        <div class="stat-label">Model Accuracy</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value">83.7%</div>
+        <div class="stat-value">0.92</div>
         <div class="stat-label">ROC-AUC Score</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value">5,109</div>
+        <div class="stat-value">5,110</div>
         <div class="stat-label">Patient Records</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">11</div>
-        <div class="stat-label">Initial Predictive Features</div>
+        <div class="stat-label">Predictive Features</div>
       </div>
     </div>
   </div>
@@ -129,7 +255,7 @@
         <i class="fa-solid fa-database"></i>
         <div>
           <strong>1. Data Acquisition & Exploration</strong>
-          <p>Analyzed 5,109 patient records with 11 features including age, BMI, glucose levels, and medical history. Conducted exploratory data analysis to understand distributions, correlations, and data quality issues.</p>
+          <p>Analyzed 5,110 patient records with 12 features including age, BMI, glucose levels, and medical history. Conducted exploratory data analysis to understand distributions, correlations, and data quality issues.</p>
         </div>
       </li>
       
@@ -137,7 +263,7 @@
         <i class="fa-solid fa-broom"></i>
         <div>
           <strong>2. Data Cleaning & Preprocessing</strong>
-          <p>Handled missing values using domain-informed imputation strategies. Encoded categorical variables (work type, residence, smoking status) and scaled numerical features for model compatibility.</p>
+          <p>Handled missing values using domain-informed imputation strategies. Removed outliers and addressed data quality issues. Encoded categorical variables (work type, residence, smoking status) and scaled numerical features for model compatibility.</p>
         </div>
       </li>
       
@@ -145,7 +271,7 @@
         <i class="fa-solid fa-wrench"></i>
         <div>
           <strong>3. Feature Engineering</strong>
-          <p> Applied polynomial and log features for non-linear relationships between predictors and stroke risk.</p>
+          <p>Created interaction terms between related health metrics. Engineered age groups and BMI categories based on medical guidelines. Applied polynomial features for non-linear relationships between predictors and stroke risk.</p>
         </div>
       </li>
       
@@ -153,7 +279,7 @@
         <i class="fa-solid fa-balance-scale"></i>
         <div>
           <strong>4. Handling Class Imbalance</strong>
-          <p>Implemented class weights = 'balanced' to handle imbalance of stroke patients to find optimal model.</p>
+          <p>Implemented SMOTE (Synthetic Minority Over-sampling Technique) to balance the dataset. Compared performance against undersampling and class weight adjustment approaches to find optimal strategy.</p>
         </div>
       </li>
       
@@ -161,23 +287,23 @@
         <i class="fa-solid fa-brain"></i>
         <div>
           <strong>5. Model Development & Training</strong>
-          <p>Built logistic regression model using 80/20 train-test split with stratification to preserve class distribution.</p>
+          <p>Built logistic regression classifier with regularization (L2). Used 80/20 train-test split with stratification to preserve class distribution. Applied cross-validation (5-fold) to ensure model stability and prevent overfitting.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-chart-line"></i>
+        <div>
+          <strong>6. Model Evaluation & Validation</strong>
+          <p>Evaluated using accuracy, precision, recall, F1-score, and ROC-AUC. Analyzed confusion matrix to understand false positive/negative trade-offs. Examined feature coefficients for interpretability and clinical relevance.</p>
         </div>
       </li>
       
       <li>
         <i class="fa-solid fa-microscope"></i>
         <div>
-          <strong>6. Statistical Diagnostics</strong>
+          <strong>7. Statistical Diagnostics</strong>
           <p>Performed hypothesis testing on coefficient significance. Checked for multicollinearity using VIF (Variance Inflation Factor). Validated model assumptions including linearity of log-odds and independence of observations.</p>
-        </div>
-      </li>
-
-      <li>
-        <i class="fa-solid fa-chart-line"></i>
-        <div>
-          <strong>7. Model Evaluation & Validation</strong>
-          <p>Evaluated using accuracy, precision, recall, F1-score, and ROC-AUC. Analyzed confusion matrix to understand false positive/negative trade-offs. Examined feature coefficients for interpretability and clinical relevance.</p>
         </div>
       </li>
     </ul>

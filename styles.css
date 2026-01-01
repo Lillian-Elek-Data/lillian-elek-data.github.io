@@ -133,6 +133,123 @@ a:hover{ text-decoration:underline }
 .footer-contacts .contact-method a{ color:var(--text) }
 .legal{ text-align:center; color:#9aa3b8 }
 
+/* ===== Project Page Styles ===== */
+.project-hero {
+  background: linear-gradient(135deg, #1a2847 0%, #0f1729 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 48px 0 32px;
+}
+.project-hero h1 {
+  font-size: 38px;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+.project-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  color: var(--muted);
+}
+.project-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.project-meta-item i {
+  color: var(--accent2);
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid #1f2435;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent2);
+  margin: 0 0 4px;
+}
+.stat-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+.content-section {
+  padding: 40px 0;
+}
+.content-section h2 {
+  margin: 0 0 16px;
+  font-size: 28px;
+}
+.content-section h3 {
+  margin: 24px 0 12px;
+  font-size: 20px;
+  color: var(--accent);
+}
+.highlight-box {
+  background: var(--card);
+  border-left: 4px solid var(--accent2);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+.skill-tag {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #0b0d12;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.methodology-list {
+  list-style: none;
+  padding: 0;
+}
+.methodology-list li {
+  background: var(--card);
+  border: 1px solid #1f2435;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 12px 0;
+  display: flex;
+  gap: 12px;
+}
+.methodology-list li i {
+  color: var(--accent2);
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cta-section {
+  background: var(--card);
+  border: 1px solid #1f2435;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  margin: 40px 0;
+}
+.btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
 /* ---------- Responsive ---------- */
 
 /* Tablet / small laptop */
@@ -156,6 +273,16 @@ a:hover{ text-decoration:underline }
   .footer-contacts{ grid-template-columns:1fr 1fr }
 }
 
+/* Project page tablet responsive */
+@media (max-width: 768px) {
+  .project-hero h1 {
+    font-size: 28px;
+  }
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* Phones */
 @media (max-width: 520px){
   .container{ padding: 0 16px }
@@ -165,4 +292,5 @@ a:hover{ text-decoration:underline }
   .pill-list{ grid-template-columns:1fr }
   .footer-contacts{ grid-template-columns:1fr }
   .contact-card.simple{ padding:16px }
+  .stat-grid{ grid-template-columns:1fr }
 }
