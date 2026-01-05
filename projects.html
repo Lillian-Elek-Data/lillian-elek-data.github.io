@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lillian Elek — Data Science Portfolio</title>
-  <meta name="description" content="Data analytics & BI portfolio: SQL, Python, Power BI, Azure Pipelines, and statistics.">
+  <meta name="description" content="Data science portfolio: Machine learning, SQL, Python, Power BI, Azure Pipelines, and statistical modeling.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,51 +85,51 @@
 
       <!-- Python -->
 
-      <article class="card" data-tags="python">
+      <article class="card" data-project="stroke" data-tags="python">
         <img src="assets/stroke.png" alt="Data to Diagnosis: Logistic Regression for Stroke Risk">
         <div class="card-body">
           <h3>Data to Diagnosis: Logistic Regression for Stroke Risk</h3>
           <p>Can patient demographics and health indicators identify stroke risk early? This project uses logistic regression with class balancing, assumption checks, and threshold optimization to prioritize high-recall screening in a real-world, imbalanced healthcare dataset.</p>
           <div class="tags"><span>Python</span><span>Logistic Regression</span><span>ML</span><span>scikit-learn</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="stroke_project_page.html">Project</a>
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/Stroke%20Prediction%20-%20Logistic%20Regression/Stroke%20Prediction%20-%20Logistic%20Regression.ipynb">Repo</a>
+            <a class="btn small project-link" target="_blank">Project</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
 
-      <article class="card" data-tags="python">
+      <article class="card" data-project="books" data-tags="python">
         <img src="assets/python-slr.png" alt="Turning Pages, Making Predictions">
         <div class="card-body">
           <h3>Turning Pages, Making Predictions</h3>
           <p>Trained a simple linear regression model to predict how many books are read each month from HoursSpentReading. Utilized assumptions checks, a hold-out test set, and full residual diagnostics.</p>
           <div class="tags"><span>Python</span><span>SLR</span><span>statsmodels</span><span>scikit-learn</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/Simple%20Linear%20Regression/Number%20of%20Books%20Read%20-%20SLR.ipynb">Repo</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
 
-      <article class="card" data-tags="python">
+      <article class="card" data-project="weather" data-tags="python">
         <img src="assets/python-weather-ols.png" alt="Cloud-to-Code: Ordinary Least Squares for Weather">
         <div class="card-body">
           <h3>Cloud-to-Code: Ordinary Least Squares for Weather (Python)</h3>
           <p>Can the temperature be predicted from an OLS model? Model utilized a train/test split and full regression diagnostics.</p>
           <div class="tags"><span>Python</span><span>ML</span><span>seaborn</span><span>scikit-learn</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/Weather%20ML/Weather%20Data%20OLS%20Regression.ipynb">Repo</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
 
-      <article class="card" data-tags="python">
+      <article class="card" data-project="co2" data-tags="python">
         <img src="assets/python-co2-mlr.png" alt="Emissions by the Equation: Predicting CO₂ with OLS">
         <div class="card-body">
           <h3>Emissions by the Equation: Predicting CO₂ with OLS</h3>
           <p>A regression-powered deep dive into what drives state-level carbon emissions. Includes log-transformed modeling, feature selection, and end-to-end diagnostics for high-accuracy environmental prediction.</p>
           <div class="tags"><span>Python</span><span>ML</span><span>MLR</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/2009-CO2-emmissions%20ML/ML%20OLS%20Regression%20with%20CO2%20Data.ipynb">Repo</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
@@ -150,14 +150,14 @@
       -->
 
       <!-- SQL -->
-      <article class="card" data-tags="sql">
+      <article class="card" data-project="sql" data-tags="sql">
         <img src="assets/sql-adventureworks.png" alt="AdventureWorks SQL Basics">
         <div class="card-body">
           <h3>AdventureWorks2019 Database (SQL)</h3>
           <p>Contains SQL Code for everyday use and general understanding. Window functions, CTEs, Indexing, and more.</p>
           <div class="tags"><span>SQL</span><span>CTEs</span><span>Window Functions</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/SQL">Repo</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
@@ -275,8 +275,26 @@
   const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 </script>
 
+<!-- JS hydrator -->
 
+  <script src="assets/js/links.js"></script>
+  <script>
+    document.querySelectorAll(".card").forEach(card => {
+      const key = card.dataset.project; // "stroke"
 
+      if (!window.LINKS[key]) {
+        console.warn(`Missing LINKS entry for project: ${key}`);
+        return;
+      }
 
+      const links = window.LINKS[key];
+
+      const projectLink = card.querySelector(".project-link");
+      const repoLink = card.querySelector(".repo-link");
+
+      if (projectLink) projectLink.href = links.project;
+      if (repoLink) repoLink.href = links.repo;
+    });
+  </script>
 </body>
 </html>

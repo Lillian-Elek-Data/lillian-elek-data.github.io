@@ -67,7 +67,6 @@
     <div class="grid cards-3">
 
       <!--
-      
       <article class="card">
         <img src="assets/powerbi-sales.png" alt="Sales Analytics Dashboard">
         <div class="card-body">
@@ -79,30 +78,29 @@
           </div>
         </div>
       </article>
-
       -->
 
-      <article class="card" data-tags="python">
+      <article class="card" data-project="stroke" data-tags="python">
         <img src="assets/stroke.png" alt="Data to Diagnosis: Logistic Regression for Stroke Risk">
         <div class="card-body">
           <h3>Data to Diagnosis: Logistic Regression for Stroke Risk</h3>
           <p>Can patient demographics and health indicators identify stroke risk early? This project uses logistic regression with class balancing, assumption checks, and threshold optimization to prioritize high-recall screening in a real-world, imbalanced healthcare dataset.</p>
           <div class="tags"><span>Python</span><span>Logistic Regression</span><span>ML</span><span>scikit-learn</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="stroke_project_page.html">Project</a>
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/Stroke%20Prediction%20-%20Logistic%20Regression/Stroke%20Prediction%20-%20Logistic%20Regression.ipynb">Repo</a>
+            <a class="btn small project-link" target="_blank">Project</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-project="sql">
         <img src="assets/sql-adventureworks.png" alt="AdventureWorks SQL Basics">
         <div class="card-body">
           <h3>AdventureWorks2019 Database (SQL)</h3>
           <p>Contains SQL Code for everyday use and general understanding. Window functions, CTEs, Indexing, and more.</p>
           <div class="tags"><span>SQL</span><span>CTEs</span><span>Window Functions</span></div>
           <div class="links">
-            <a class="btn small" target="_blank" href="https://github.com/Lillian-Elek-Data/SQL">Repo</a>
+            <a class="btn small repo-link" target="_blank">Repo</a>
           </div>
         </div>
       </article>
@@ -176,5 +174,26 @@
   const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 </script>
 
+<!-- JS hydrator -->
+
+  <script src="assets/js/links.js"></script>
+  <script>
+    document.querySelectorAll(".card").forEach(card => {
+      const key = card.dataset.project; // "stroke"
+
+      if (!window.LINKS[key]) {
+        console.warn(`Missing LINKS entry for project: ${key}`);
+        return;
+      }
+
+      const links = window.LINKS[key];
+
+      const projectLink = card.querySelector(".project-link");
+      const repoLink = card.querySelector(".repo-link");
+
+      if (projectLink) projectLink.href = links.project;
+      if (repoLink) repoLink.href = links.repo;
+    });
+  </script>
 </body>
 </html>

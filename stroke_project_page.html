@@ -287,15 +287,17 @@
 </section>
 
 <!-- CTA Section -->
-<section class="content-section">
+<section class="content-section" data-project="stroke">
   <div class="container">
     <div class="cta-section">
       <h2>Explore the Full Project</h2>
       <p class="muted">Dive into the complete analysis, code, and visualizations</p>
+
       <div class="btn-group">
-        <a class="btn primary" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/Stroke%20Prediction%20-%20Logistic%20Regression/Stroke%20Prediction%20-%20Logistic%20Regression.ipynb" target="_blank">
+        <a class="btn primary repo-link" target="_blank">
           <i class="fa-brands fa-github"></i> View on GitHub
         </a>
+
         <a class="btn" href="projects.html">
           <i class="fa-solid fa-arrow-left"></i> Back to Projects
         </a>
@@ -372,7 +374,27 @@
 </script>
 
 
+<!-- JS hydrator -->
 
+  <script src="assets/js/links.js"></script>
+  <script>
+    document.querySelectorAll("[data-project]").forEach(container => {
+      const key = container.dataset.project; // "stroke"
+
+      if (!window.LINKS[key]) {
+        console.warn(`Missing LINKS entry for project: ${key}`);
+        return;
+      }
+
+      const links = window.LINKS[key];
+
+      const projectLink = container.querySelector(".project-link");
+      const repoLink = container.querySelector(".repo-link");
+
+      if (projectLink) projectLink.href = links.project;
+      if (repoLink) repoLink.href = links.repo;
+    });
+  </script>
 
 </body>
 </html>
