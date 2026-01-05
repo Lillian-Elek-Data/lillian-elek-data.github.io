@@ -1,4 +1,4 @@
-# Lillian Elek — Data Analytics Portfolio (GitHub Pages)
+# Lillian Elek — Data Science Portfolio (GitHub Pages)
 
 This repository powers the portfolio site for **Lillian Elek**. It’s a clean, single‑page site you can deploy via **GitHub Pages**.
 
