@@ -44,17 +44,15 @@
 <!-- Project Hero -->
 <section class="project-hero">
   <div class="container">
-    <h1>🧠 Predicting Stroke Risk with Logistic Regression</h1>
-    <p class="lead">A complete machine learning pipeline that predicts stroke probability from clinical and demographic data. The model prioritizes high recall (80% sensitivity) to catch actual stroke cases, making it suitable as a screening tool for preventive healthcare programs.</p>
+    <h1> Predicting Stroke Risk with Logistic Regression</h1>
+    <p class="lead">A complete machine learning pipeline that predicts stroke probability from clinical and demographic data. 
+      The model prioritizes high recall (80% sensitivity) to catch actual stroke cases, making it suitable as a screening tool for 
+      preventive healthcare programs.</p>
     
     <div class="project-meta">
       <div class="project-meta-item">
         <i class="fa-solid fa-calendar"></i>
         <span>December 2025</span>
-      </div>
-      <div class="project-meta-item">
-        <i class="fa-solid fa-clock"></i>
-        <span>40+ hours</span>
       </div>
       <div class="project-meta-item">
         <i class="fa-solid fa-code"></i>
@@ -102,18 +100,21 @@
 <section class="content-section">
   <div class="container">
     <h2>Problem Statement</h2>
-    <p>Stroke is a leading cause of death and disability worldwide, but many risk factors are preventable with early intervention. This project aimed to build a predictive model that could identify high-risk patients based on readily available clinical and demographic data.</p>
+    <p>Stroke is a leading cause of death and disability worldwide, creating immense personal, family, and economic burdens, 
+      with millions suffering long-term impairments and significant costs. Fortunately many risk factors are preventable with early intervention. 
+      I built a predictive model that can identify high-risk patients based on readily available clinical data.</p>
     
     <div class="highlight-box">
-      <strong>Business Impact:</strong> Early identification of high-risk patients enables healthcare providers to implement preventive measures, potentially saving lives and reducing healthcare costs associated with stroke treatment and rehabilitation.
+      <strong>Business Impact:</strong> Early identification of high-risk patients enables healthcare providers to implement preventive measures, 
+      potentially saving lives and reducing healthcare costs associated with stroke treatment and rehabilitation.
     </div>
 
     <h3>Challenges</h3>
     <ul>
-      <li><strong>Class Imbalance:</strong> Only 4.9% of patients experienced strokes, requiring careful handling of imbalanced data</li>
-      <li><strong>Missing Data:</strong> Real-world healthcare data contained missing values that needed strategic imputation</li>
-      <li><strong>Feature Selection:</strong> Identifying which clinical markers were truly predictive versus correlated</li>
-      <li><strong>Model Interpretability:</strong> Ensuring the model could be explained to healthcare professionals for clinical adoption</li>
+      <li><strong>Class Imbalance:</strong> Only 4.9% of patients experienced strokes, requiring careful handling of imbalanced data </li>
+      <li><strong>Missing Data:</strong> Real-world healthcare data contained missing values that needed strategic imputation </li>
+      <li><strong>Feature Selection:</strong> Identifying which clinical markers were truly predictive versus correlated </li>
+      <li><strong>Model Interpretability:</strong> Ensuring the model could be explained to healthcare professionals for clinical adoption </li>
     </ul>
   </div>
 </section>
@@ -122,62 +123,71 @@
 <section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
   <div class="container">
     <h2>Methodology</h2>
-    <p>This project followed a rigorous data science workflow, emphasizing reproducibility and statistical validity.</p>
+    <p>This project employed a rigorous and reproducible data science workflow grounded in statistical best practices. The model's design and evaluation 
+      were guided by the clinical objective of prioritizing the identification of true stroke cases, accepting a higher false-positive rate to support early intervention and risk mitigation. </p>
     
     <ul class="methodology-list">
       <li>
         <i class="fa-solid fa-database"></i>
         <div>
           <strong>1. Data Acquisition & Exploration</strong>
-          <p>Analyzed 5,109 patient records with 11 features including age, BMI, glucose levels, and medical history. Conducted exploratory data analysis to understand distributions, correlations, and data quality issues.</p>
-        </div>
-      </li>
-      
-      <li>
-        <i class="fa-solid fa-broom"></i>
-        <div>
-          <strong>2. Data Cleaning & Preprocessing</strong>
-          <p>Handled missing values using domain-informed imputation strategies. Encoded categorical variables (work type, residence, smoking status) and scaled numerical features for model compatibility.</p>
-        </div>
-      </li>
-      
-      <li>
-        <i class="fa-solid fa-wrench"></i>
-        <div>
-          <strong>3. Feature Engineering</strong>
-          <p> Applied polynomial and log features for non-linear relationships between predictors and stroke risk.</p>
+          <p>The analysis was conducted on a dataset of 5,109 patient records, each described by 11 demographic and clinical features, including age, body mass index (BMI), 
+            average glucose levels, and relevant medical history indicators. An initial exploratory data analysis (EDA) phase was performed to assess feature distributions, 
+            identify outliers and class imbalance, evaluate relationships between predictors and stroke occurrence, and uncover potential data quality issues such as missing or anomalous values.
+            This analysis informed preprocessing decisions such as feature transformation, handling of missing values, and variable selection prior to model training.</p>
         </div>
       </li>
       
       <li>
         <i class="fa-solid fa-balance-scale"></i>
         <div>
-          <strong>4. Handling Class Imbalance</strong>
-          <p>Implemented class weights = 'balanced' to handle imbalance of stroke patients to find optimal model.</p>
+          <strong>2. Data Preprocessing & Train/Test Split</strong>
+          <p>Data preprocessing included domain-informed handling of missing BMI values. The dataset was then split into training and testing sets using a 
+            stratified 80/20 split to preserve the original class distribution and ensure unbiased model evaluation. During the split I preformed feature engineering, 
+            categorical encoding (work type, residence, smoking status), class imbalance correction, and numerical scaling for model compatibility. 
+            Splitting the data early in the process is imperative to prevent data leakage which can inflate the model's performance metrics and create a false sense of effectiveness.</p>
         </div>
       </li>
-      
+
       <li>
-        <i class="fa-solid fa-brain"></i>
+        <i class="fa-solid fa-wrench"></i>
         <div>
-          <strong>5. Model Development & Training</strong>
-          <p>Built logistic regression model using 80/20 train-test split with stratification to preserve class distribution.</p>
+          <strong>3. Model Development (Feature Selection)</strong>
+          <p>A logistic regression model was developed using statsmodels, incorporating balanced class weights to address the low prevalence of stroke cases in the dataset. 
+            This stage focused on statistical inference, leveraging statsmodels’ detailed diagnostic outputs to evaluate coefficient significance through hypothesis testing. 
+            The results were used to identify predictors that were both statistically meaningful and clinically relevant, informing feature selection for the final predictive model.</p>
         </div>
       </li>
       
       <li>
         <i class="fa-solid fa-microscope"></i>
         <div>
-          <strong>6. Statistical Diagnostics</strong>
-          <p>Performed hypothesis testing on coefficient significance. Checked for multicollinearity using VIF (Variance Inflation Factor). Validated model assumptions including linearity of log-odds.</p>
+          <strong>4. Assumption Validation</strong>
+          <p>To ensure the statistical validity and interpretability of the logistic regression model, key modeling assumptions were explicitly evaluated prior to final training. 
+            The linearity assumption between continuous predictors and the log-odds of stroke was assessed to confirm that feature transformations appropriately captured non-linear effects. 
+            In addition, multicollinearity among predictors was examined using Variance Inflation Factor (VIF) analysis to ensure stable coefficient estimates and reliable inference. 
+            These checks helped prevent distorted effect sizes and improved confidence in the model’s conclusions.</p>
         </div>
       </li>
 
       <li>
         <i class="fa-solid fa-chart-line"></i>
         <div>
-          <strong>7. Model Evaluation & Validation</strong>
-          <p>Evaluated using accuracy, precision, recall, F1-score, and ROC-AUC. Analyzed confusion matrix to understand false positive/negative trade-offs. Examined feature coefficients for interpretability and clinical relevance.</p>
+          <strong>5. Logistic Model Training, Testing, & Evaluation</strong>
+          <p>Using scikit-learn, the finalized feature set was used to train and test a logistic regression model. 
+            Performance was assessed using accuracy, precision, recall, F1-score, and ROC-AUC to capture both overall classification quality and class-specific behavior. 
+            Confusion matrix analysis was used to explicitly evaluate false positive and false negative outcomes, supporting informed trade-off analysis in a clinical risk setting.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-gears"></i>
+        <div>
+          <strong>6. Threshold Optimization</strong>
+          <p>Rather than relying on the default probability threshold, the model’s decision boundary was systematically optimized to reflect clinical priorities. 
+            Threshold tuning focused on maximizing sensitivity for stroke detection, recognizing that the cost of missing true stroke cases outweighs the impact of increased false positives. 
+            This step translated probabilistic model outputs into actionable classification decisions, ensuring the model’s operational behavior aligned with real-world 
+            healthcare screening and early intervention requirements.</p>
         </div>
       </li>
     </ul>
@@ -192,14 +202,15 @@
     <h3>Top Predictive Features</h3>
     <p>The model identified several strong predictors of stroke risk:</p>
     <ul>
-      <li><strong>Age:</strong> Most significant predictor—each standard deviation increase associated with a 5.9x increase in stroke odds.</li>
-      <li><strong>Hypertension:</strong> Patients with hypertension nearly doubles stroke odds</li>
-      <li><strong>Average Glucose Level:</strong> Elevated glucose shows a smaller but positive association</li>
+      <li><strong>Age:</strong> Most significant predictor—each decade of life multiplies stroke odds by 5.86× (486% increase)</li>
+      <li><strong>Hypertension:</strong> Patients with hypertension have 1.83 higher stroke odds (83% increase) compared to those without hypertension</li>
+      <li><strong>Average Glucose Level:</strong> Higher glucose levels moderately increased risk (OR = 1.25 per log-unit increase, 25% higher odds)</li>
     </ul>
 
     <h3>Model Performance Analysis</h3>
     <div class="highlight-box">
-      <p><strong>Precision vs. Recall Trade-off:</strong> The model achieved 73% overall accuracy with a deliberate bias toward sensitivity. Breaking down the stroke prediction performance:</p>
+      <p><strong>Precision vs. Recall Trade-off:</strong> The model achieved 73% overall accuracy with a deliberate bias toward sensitivity. 
+        Breaking down the stroke prediction performance:</p>
       <ul style="margin: 8px 0 0;">
         <li><strong>Recall (80%):</strong> The model successfully identifies 4 out of 5 patients who will actually experience a stroke—critical for early intervention</li>
         <li><strong>Precision (13%):</strong> When the model flags a patient as high-risk, it's correct 13% of the time, resulting in false alarms for preventive screening</li>
@@ -207,14 +218,6 @@
         <li><strong>No Stroke Class (99% precision, 72% recall):</strong> The model is highly reliable at identifying low-risk patients, correctly clearing 99% of patients it flags as low-risk</li>
       </ul>
     </div>
-
-    <h3>Addressing the Class Imbalance Challenge</h3>
-    <p>With only 4.9% of patients experiencing strokes in the dataset (50 stroke cases vs. 972 no-stroke cases), this is a highly imbalanced classification problem. The model's performance reflects a strategic decision:</p>
-    <ul>
-      <li><strong>Optimized for Recall:</strong> Used class weighting to ensure the minority class (stroke) isn't overlooked</li>
-      <li><strong>Acceptable False Positives:</strong> In preventive medicine, it's medically and ethically preferable to over-screen than to miss high-risk patients</li>
-      <li><strong>Next Steps for Improvement:</strong> Additional feature enhancement with additional clinical variables, tiered decision framework, or model comparison to capture best fitting model.</li>
-    </ul>
 
     <h3>Business Applications</h3>
     <ul>
@@ -224,6 +227,9 @@
       <li><strong>Early Intervention Pipeline:</strong> Integrate with clinical workflows to trigger automated alerts for high-risk patients, enabling proactive intervention</li>
       <li><strong>Cost-Benefit Analysis:</strong> While false positives generate screening costs, catching actual strokes early prevents the far greater costs of emergency treatment and long-term disability care</li>
     </ul>
+
+    <h3>Next Steps for Improvement</h3>
+    <p>Additional feature enhancement with additional clinical variables, tiered decision framework, or model comparison to capture best fitting model.</p>
   </div>
 </section>
 
@@ -231,57 +237,22 @@
 <section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
   <div class="container">
     <h2>Technical Skills Demonstrated</h2>
-    <div class="grid cards-2">
-      <div class="card">
-        <div class="card-body">
-          <h3>Machine Learning</h3>
-          <ul style="color: var(--muted); margin: 0;">
-            <li>Logistic regression implementation & tuning</li>
-            <li>Feature engineering & selection</li>
-            <li>Decision threshold optimization</li>
-            <li>Handling imbalanced datasets (class weights)</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h3>Statistical Analysis</h3>
-          <ul style="color: var(--muted); margin: 0;">
-            <li>Hypothesis testing (p-values, confidence intervals)</li>
-            <li>Multicollinearity diagnostics (VIF)</li>
-            <li>Model assumption validation</li>
-            <li>Coefficient interpretation</li>
-            <li>Statistical significance testing</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h3>Python & Libraries</h3>
-          <ul style="color: var(--muted); margin: 0;">
-            <li>scikit-learn (train/test split, modeling, preprocessing)</li>
-            <li>pandas (data manipulation)</li>
-            <li>statsmodels (statistical & hypothesis testing)</li>
-            <li>seaborn (visualization)</li>
-            <li>class weights</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <h3>Data Science Best Practices</h3>
-          <ul style="color: var(--muted); margin: 0;">
-            <li>Reproducible research (Jupyter notebooks)</li>
-            <li>Train-test splitting & validation</li>
-            <li>Model evaluation metrics selection</li>
-            <li>Documentation & code commenting</li>
-            <li>Version control (Git)</li>
-          </ul>
-        </div>
-      </div>
+    <p style="color: var(--muted); margin-bottom: 20px;">This project showcases end-to-end machine learning capabilities from data preprocessing to model deployment strategy.</p>
+    
+    <div class="skill-tags">
+      <span class="skill-tag">Logistic Regression</span>
+      <span class="skill-tag">Train-Test Split</span>
+      <span class="skill-tag">Class Imbalance (class weights)</span>
+      <span class="skill-tag">Hypothesis Testing</span>
+      <span class="skill-tag">VIF Analysis</span>
+      <span class="skill-tag">Coefficient Interpretation</span>
+      <span class="skill-tag">Feature Engineering</span>
+      <span class="skill-tag">Confusion Matrix Analysis</span>
+      <span class="skill-tag">Threshold Optimization</span>
+      <span class="skill-tag">pandas</span>
+      <span class="skill-tag">seaborn</span>
+      <span class="skill-tag">statsmodels</span>
+      <span class="skill-tag">scikit-learn</span>
     </div>
   </div>
 </section>

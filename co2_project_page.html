@@ -14,7 +14,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
 
-  <!-- Your site styles -->
+ <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
   
@@ -41,216 +41,268 @@
 </header>
 
 <!-- Project Hero -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-copy">
-      <h1>Emissions by the Equation: Predicting CO₂ with OLS</h1>
-      <p class="lead">A regression-powered deep dive into what drives state-level carbon emissions across the United States.</p>
-      <p>This project uses Ordinary Least Squares regression to predict CO₂ emissions based on environmental and economic factors. Through log transformations, feature selection, and comprehensive diagnostics, I built a high-accuracy model revealing the key drivers of carbon emissions at the state level.</p>
-      <div class="cta-row">
-        <a class="btn primary" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/2009-CO2-emmissions%20ML/ML%20OLS%20Regression%20with%20CO2%20Data.ipynb">
-          <i class="fa-brands fa-github"></i> View on GitHub
+<section class="project-hero">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 400px; gap: 32px; align-items: start;">
+      <div>
+        <h1>Emissions by the Equation: Predicting CO₂ with OLS</h1>
+        <p class="lead">A regression-powered deep dive into what drives state-level carbon emissions across the United States.</p>
+        <p>This project uses Ordinary Least Squares regression to predict CO₂ emissions based on environmental and economic factors. Through log transformations, feature selection, and comprehensive diagnostics, I built a high-accuracy model revealing the key drivers of carbon emissions at the state level.</p>
+        
+        <div class="project-meta" style="display: flex; gap: 24px; margin: 20px 0; flex-wrap: wrap;">
+          <div class="project-meta-item" style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-calendar" style="color: var(--accent2);"></i>
+            <span>October 2025</span>
+          </div>
+          <div class="project-meta-item" style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-code" style="color: var(--accent2);"></i>
+            <span>Python, scikit-learn, statsmodels</span>
+          </div>
+        </div>
+
+        <div class="skill-tags">
+          <span class="skill-tag">Multiple Linear Regression</span>
+          <span class="skill-tag">Feature Engineering</span>
+          <span class="skill-tag">Model Validation</span>
+          <span class="skill-tag">Statistical Testing</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Train/ Test Split</span>
+        </div>
+      </div>
+      
+      <img src="assets/python-co2-mlr.png" alt="CO2 Emissions Analysis" style="width: 100%; max-width: 400px; border-radius: 12px; border: 1px solid #1f2435; box-shadow: 0 8px 24px rgba(0,0,0,.3);">
+    </div>
+  </div>
+</section>
+
+<!-- Key Results -->
+<section class="section">
+  <div class="container">
+    <h2>Key Results</h2>
+    <div class="grid cards-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-chart-line" style="color: var(--accent2);"></i> High R² Score</h3>
+          <p>Achieved strong model fit with high R² and adjusted R², indicating excellent predictive power for state-level emissions</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-bullseye" style="color: var(--accent2);"></i> Low RMSE</h3>
+          <p>Model demonstrated accurate predictions with minimal error on both training and test datasets</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
+          <h3><i class="fa-solid fa-check-circle" style="color: var(--accent2);"></i> Validated Assumptions</h3>
+          <p>Successfully validated all OLS assumptions through comprehensive residual diagnostics and statistical tests</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Statement -->
+<section class="section" style="background: rgba(24, 40, 71, 0.3);">
+  <div class="container">
+    <h2>Problem Statement</h2>
+    <p>Climate change represents one of the most pressing challenges of our time, with carbon dioxide emissions being a primary driver of global warming. Understanding what factors contribute most significantly to CO₂ emissions at the state level is essential for developing effective environmental policies and reduction strategies.</p>
+    
+    <p style="margin-top: 16px;">However, emissions patterns are influenced by a complex interplay of environmental, economic, and demographic factors. Without a quantitative understanding of these relationships, policymakers struggle to prioritize interventions and allocate resources effectively.</p>
+
+    <p style="margin-top: 16px;"><strong>The Challenge:</strong> Build a predictive model that can accurately estimate state-level CO₂ emissions based on measurable characteristics, identify the most significant emission drivers, and provide actionable insights for emission reduction strategies.</p>
+  </div>
+</section>
+
+<!-- National Impact -->
+<section class="section">
+  <div class="container">
+    <h2>National Impact</h2>
+    
+    <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
+      <h3 style="margin: 0 0 16px; color: var(--accent2);"><i class="fa-solid fa-earth-americas"></i> Environmental Policy & Planning</h3>
+      <p style="color: var(--muted); margin-bottom: 16px;">This analysis provides critical insights for state and federal environmental agencies working to meet emissions reduction targets. By quantifying which factors most significantly impact CO₂ output, policymakers can:</p>
+      <ul style="color: var(--muted); margin-left: 20px;">
+        <li><strong>Prioritize interventions</strong> by focusing on the highest-impact emission drivers</li>
+        <li><strong>Forecast future emissions</strong> under different policy scenarios and economic conditions</li>
+        <li><strong>Benchmark state performance</strong> and identify states that outperform or underperform expectations</li>
+        <li><strong>Allocate resources efficiently</strong> to maximize emission reductions per dollar invested</li>
+        <li><strong>Set realistic targets</strong> based on each state's unique characteristics and constraints</li>
+      </ul>
+      <p style="color: var(--muted); margin-top: 16px;">With states contributing differently to national emissions based on their economic structure, population density, and energy mix, understanding these drivers enables more nuanced, effective climate policy that accounts for regional differences while working toward collective national goals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Challenges -->
+<section class="section">
+  <div class="container">
+    <h2>Challenges</h2>
+    <ul>
+      <p><li><strong>Skewed Distributions:</strong>Many environmental and economic variables exhibited significant positive skew, violating OLS assumptions. Required careful transformation strategy to achieve normality without losing interpretability. </li></p>
+      <p><li><strong>Multicollinearity:</strong> Economic and population variables showed high intercorrelation, creating multicollinearity issues. Required careful feature selection to identify independent predictors. </li></p>
+      <p><li><strong>Scale Differences:</strong> Variables measured on vastly different scales (e.g., population vs. emissions) complicated direct comparison. Log transformations helped normalize scale differences.</li></p>
+      <li><strong>Assumption Validation:</strong> Meeting the four remaining OLS assumptions (linearity, independence, normality, homoscedasticity) simultaneously required iterative model refinement and diagnostic testing. </li>
+    </ul>  
+  </div>
+</section>
+
+
+<!-- Methodology -->
+<section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <h2>Methodology</h2>
+    <p>This project follows a rigorous statistical modeling workflow with emphasis on assumption validation and interpretability. </p>
+    
+    <ul class="methodology-list">
+      <li>
+        <i class="fa-solid fa-database"></i>
+        <div>
+          <strong>1. Data Preparation & Exploration & Preprocessing</strong>
+          <p>Loaded 2009 state-level environmental and economic data. Conducted exploratory data analysis to understand distributions, 
+            identify outliers, and examine relationships between variables. Checked for missing values and data quality issues.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-balance-scale"></i>
+        <div>
+          <strong>2. Data Preprocessing & Train/Test Split</strong>
+          <p>Applied log transformations to handle right-skewed distributions and capture multiplicative relationships. The dataset was then split into training and testing sets 80/20 split. 
+            During the split I preformed numerical scaling for model compatibility. </p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-wrench"></i>
+        <div>
+          <strong>3. Model Development (Training data)</strong>
+          <p>Implemented OLS regression using statsmodels. Conducted a backwards and forwards stepwise regression to identify the optimal predictor combination that maximizes 
+            explanatory power while maintaining statistical validity.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-microscope"></i>
+        <div>
+          <strong>4. OLS Model Assumption Validation</strong>
+          <p>To ensure the statistical validity and interpretability of the OLS model, I conducted comprehensive residual analysis including Q-Q plots, residual vs. fitted plots, 
+            and scale-location plots. Validated linearity, normality, homoscedasticity, and independence assumptions. These checks improve confidence in the model’s conclusions.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-chart-line"></i>
+        <div>
+          <strong>5. Model Evaluation</strong>
+          <p>Using scikit-learn, the finalized feature set was used to test the regression model. 
+            Performance was assessed using R², RMSE, and MAE to capture the model fit and predictive performance. </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- Key Findings & Insights -->
+<section class="section" style="background: rgba(24, 40, 71, 0.3);">
+  <div class="container">
+    <h2>Key Findings & Insights</h2>
+    
+    <!-- Top Predictive Features -->
+    <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
+      <h3 style="margin: 0 0 16px; color: var(--accent2);"><i class="fa-solid fa-star"></i> Top Predictive Features</h3>
+      <p style="color: var(--muted); margin-bottom: 16px;">The analysis revealed several key drivers of state-level CO₂ emissions:</p>
+      
+      <div class="grid cards-2" style="margin-top: 16px;">
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
+          <h4 style="margin: 0 0 8px; color: var(--accent2);">Economic Activity</h4>
+          <p style="color: var(--muted); margin: 0; font-size: 14px;">State GDP and industrial output showed strong positive correlation with emissions, highlighting the carbon intensity of economic production.</p>
+        </div>
+        
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
+          <h4 style="margin: 0 0 8px; color: var(--accent2);">Energy Consumption</h4>
+          <p style="color: var(--muted); margin: 0; font-size: 14px;">Total energy use emerged as a primary predictor, with different energy sources (fossil fuels vs. renewables) showing distinct impact patterns.</p>
+        </div>
+        
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
+          <h4 style="margin: 0 0 8px; color: var(--accent2);">Population Density</h4>
+          <p style="color: var(--muted); margin: 0; font-size: 14px;">Population size and density influenced emissions, though the relationship was moderated by urbanization patterns and transportation infrastructure.</p>
+        </div>
+        
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
+          <h4 style="margin: 0 0 8px; color: var(--accent2);">Log-Transformed Effects</h4>
+          <p style="color: var(--muted); margin: 0; font-size: 14px;">Logarithmic transformations revealed multiplicative relationships, showing that percentage changes in predictors correspond to percentage changes in emissions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model Performance Analysis -->
+    <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
+      <h3 style="margin: 0 0 16px; color: var(--accent);"><i class="fa-solid fa-chart-bar"></i> Model Performance Analysis</h3>
+      
+      <div style="margin-top: 16px;">
+        <h4 style="color: var(--accent2); margin-bottom: 8px;">Training Performance</h4>
+        <ul style="color: var(--muted); margin-left: 20px;">
+          <li><strong>High R²:</strong> Model explained a substantial proportion of variance in state-level CO₂ emissions</li>
+          <li><strong>Adjusted R²:</strong> Remained high after adjusting for number of predictors, indicating genuine predictive power</li>
+          <li><strong>F-statistic significance:</strong> Overall model showed strong statistical significance (p < 0.001)</li>
+        </ul>
+        
+        <h4 style="color: var(--accent2); margin: 24px 0 8px;">Testing Performance</h4>
+        <ul style="color: var(--muted); margin-left: 20px;">
+          <li><strong>Low RMSE:</strong> Predictions on unseen test data showed minimal error</li>
+          <li><strong>Consistent accuracy:</strong> Model maintained performance across train and test sets, indicating no overfitting</li>
+          <li><strong>Residual patterns:</strong> Residuals showed random scatter around zero with no systematic patterns</li>
+        </ul>
+        
+        <h4 style="color: var(--accent2); margin: 24px 0 8px;">Assumption Validation</h4>
+        <ul style="color: var(--muted); margin-left: 20px;">
+          <li><strong>Linearity:</strong> Residual plots confirmed linear relationships between predictors and outcome</li>
+          <li><strong>Normality:</strong> Q-Q plots showed residuals follow normal distribution</li>
+          <li><strong>Homoscedasticity:</strong> Scale-location plots demonstrated constant variance of residuals</li>
+          <li><strong>Independence:</strong> No autocorrelation detected in residuals (Durbin-Watson ≈ 2.0)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
+      <h3 style="margin: 0 0 16px; color: var(--accent2);"><i class="fa-solid fa-forward"></i> Next Steps for Improvement</h3>
+      <p style="color: var(--muted); margin-bottom: 12px;">While this model demonstrates strong performance, several enhancements could further improve accuracy and insights:</p>
+      <ul style="color: var(--muted); margin-left: 20px;">
+        <li><strong>Time-series extension:</strong> Incorporate data from multiple years to capture temporal trends and policy impacts</li>
+        <li><strong>Advanced algorithms:</strong> Compare OLS performance against Ridge, Lasso, and Random Forest regression models</li>
+        <li><strong>Interaction effects:</strong> Explore how combinations of variables (e.g., population × energy mix) jointly influence emissions</li>
+        <li><strong>Sector-specific analysis:</strong> Break down emissions by sector (transportation, industrial, residential) for more targeted insights</li>
+        <li><strong>Cross-validation:</strong> Implement k-fold cross-validation for more robust performance estimates</li>
+        <li><strong>Feature importance:</strong> Calculate standardized coefficients and partial dependence plots to better communicate relative importance</li>
+        <li><strong>Outlier analysis:</strong> Investigate states with high residuals to understand unique emission patterns</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="content-section" data-project="co2">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Explore the Full Analysis</h2>
+      <p class="muted">View the complete Jupyter notebook on GitHub to see detailed code, statistical outputs, visualizations, and comprehensive diagnostics.</p>
+
+      <div class="btn-group">
+        <a class="btn primary repo-link" target="_blank">
+          <i class="fa-brands fa-github"></i> View Full Project on GitHub
         </a>
+
         <a class="btn" href="projects.html">
           <i class="fa-solid fa-arrow-left"></i> Back to Projects
         </a>
       </div>
     </div>
-    <img class="hero-img" src="assets/python-co2-mlr.png" alt="CO2 Emissions Analysis">
-  </div>
-</section>
-
-<!-- Project Overview -->
-<section class="section">
-  <div class="container">
-    <h2>Project Overview</h2>
-    <p>Understanding the factors that drive carbon emissions is crucial for developing effective environmental policies. This project analyzes 2009 state-level data to identify and quantify the relationship between various environmental, economic, and demographic factors and CO₂ emissions.</p>
-    
-    <div class="grid cards-3" style="margin-top: 24px;">
-      <div class="card">
-        <div class="card-body">
-          <h3><i class="fa-solid fa-bullseye" style="color: var(--accent2);"></i> Objective</h3>
-          <p>Build a predictive OLS regression model to understand which factors most significantly impact state-level CO₂ emissions</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-body">
-          <h3><i class="fa-solid fa-database" style="color: var(--accent2);"></i> Dataset</h3>
-          <p>2009 state-level environmental and economic data including emissions, population, energy consumption, and economic indicators</p>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-body">
-          <h3><i class="fa-solid fa-chart-line" style="color: var(--accent2);"></i> Outcome</h3>
-          <p>High-accuracy predictive model with comprehensive residual diagnostics and clear insights into emission drivers</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Methodology -->
-<section class="section" style="background: rgba(24, 40, 71, 0.3);">
-  <div class="container">
-    <h2>Methodology</h2>
-    <p>This project follows a rigorous machine learning workflow with emphasis on statistical validity and model interpretability.</p>
-    
-    <div style="margin-top: 24px;">
-      <h3 style="color: var(--accent2); margin-bottom: 12px;"><i class="fa-solid fa-1"></i> Data Preparation & Exploration</h3>
-      <ul style="color: var(--muted); margin-left: 20px;">
-        <li>Loaded and cleaned 2009 state-level emissions dataset</li>
-        <li>Performed exploratory data analysis (EDA) to understand distributions and relationships</li>
-        <li>Identified potential predictors of CO₂ emissions</li>
-        <li>Checked for missing values, outliers, and data quality issues</li>
-      </ul>
-
-      <h3 style="color: var(--accent2); margin: 24px 0 12px;"><i class="fa-solid fa-2"></i> Feature Engineering & Transformation</h3>
-      <ul style="color: var(--muted); margin-left: 20px;">
-        <li>Applied log transformations to handle skewed distributions</li>
-        <li>Evaluated correlation between potential predictors</li>
-        <li>Selected optimal features through statistical analysis</li>
-        <li>Addressed multicollinearity concerns</li>
-      </ul>
-
-      <h3 style="color: var(--accent2); margin: 24px 0 12px;"><i class="fa-solid fa-3"></i> Model Development</h3>
-      <ul style="color: var(--muted); margin-left: 20px;">
-        <li>Implemented Ordinary Least Squares (OLS) regression using statsmodels</li>
-        <li>Split data into training and testing sets for validation</li>
-        <li>Trained multiple model configurations to find optimal predictors</li>
-        <li>Validated OLS assumptions (linearity, normality, homoscedasticity, independence)</li>
-      </ul>
-
-      <h3 style="color: var(--accent2); margin: 24px 0 12px;"><i class="fa-solid fa-4"></i> Evaluation & Diagnostics</h3>
-      <ul style="color: var(--muted); margin-left: 20px;">
-        <li>Conducted comprehensive residual analysis</li>
-        <li>Evaluated model performance using R², adjusted R², and RMSE</li>
-        <li>Created diagnostic plots (residual plots, Q-Q plots, scale-location)</li>
-        <li>Assessed prediction accuracy on hold-out test set</li>
-        <li>Interpreted coefficient significance and effect sizes</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- Key Findings -->
-<section class="section">
-  <div class="container">
-    <h2>Key Findings</h2>
-    
-    <div class="grid cards-2" style="margin-top: 24px;">
-      <div class="card">
-        <div class="card-body">
-          <h3><i class="fa-solid fa-chart-bar" style="color: var(--accent);"></i> Model Performance</h3>
-          <ul style="color: var(--muted); margin: 12px 0 0 20px;">
-            <li>Achieved high R² indicating strong predictive power</li>
-            <li>Low RMSE demonstrating accurate predictions</li>
-            <li>Residuals showed normal distribution with constant variance</li>
-            <li>Model successfully validated on unseen test data</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-body">
-          <h3><i class="fa-solid fa-magnifying-glass-chart" style="color: var(--accent);"></i> Significant Predictors</h3>
-          <ul style="color: var(--muted); margin: 12px 0 0 20px;">
-            <li>Economic activity strongly correlates with emissions</li>
-            <li>Population density influences emission patterns</li>
-            <li>Energy consumption is a primary driver</li>
-            <li>Log transformations revealed nonlinear relationships</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top: 24px; padding: 20px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
-      <h3 style="margin: 0 0 12px;"><i class="fa-solid fa-lightbulb" style="color: var(--accent2);"></i> Business Impact</h3>
-      <p style="color: var(--muted); margin: 0;">This analysis provides actionable insights for environmental policymakers and researchers. By understanding which factors most significantly impact CO₂ emissions, states can develop targeted interventions to reduce their carbon footprint. The model's high accuracy enables reliable forecasting for policy scenario planning.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Technical Stack -->
-<section class="section" style="background: rgba(24, 40, 71, 0.3);">
-  <div class="container">
-    <h2>Technologies & Tools</h2>
-    <div class="grid cards-3" style="margin-top: 24px;">
-      <div class="card">
-        <div class="card-body">
-          <h3>Python Libraries</h3>
-          <div class="tags">
-            <span>pandas</span>
-            <span>numpy</span>
-            <span>statsmodels</span>
-            <span>scikit-learn</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-body">
-          <h3>Visualization</h3>
-          <div class="tags">
-            <span>matplotlib</span>
-            <span>seaborn</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-body">
-          <h3>Techniques</h3>
-          <div class="tags">
-            <span>OLS Regression</span>
-            <span>Log Transformation</span>
-            <span>Residual Analysis</span>
-            <span>Feature Selection</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Implementation Highlights -->
-<section class="section">
-  <div class="container">
-    <h2>Implementation Highlights</h2>
-    
-    <div style="margin-top: 24px;">
-      <div style="margin-bottom: 24px; padding: 20px; background: var(--card); border-left: 4px solid var(--accent2); border-radius: 8px;">
-        <h3 style="margin: 0 0 8px; color: var(--accent2);">Train-Test Split Validation</h3>
-        <p style="color: var(--muted); margin: 0;">Implemented proper data splitting to ensure model generalizability. The model was trained on a subset of states and validated on held-out data to prevent overfitting and ensure reliable performance estimates.</p>
-      </div>
-
-      <div style="margin-bottom: 24px; padding: 20px; background: var(--card); border-left: 4px solid var(--accent); border-radius: 8px;">
-        <h3 style="margin: 0 0 8px; color: var(--accent);">Log-Transformed Modeling</h3>
-        <p style="color: var(--muted); margin: 0;">Applied logarithmic transformations to handle skewed distributions and capture nonlinear relationships. This transformation improved model fit and made interpretation more meaningful for multiplicative effects.</p>
-      </div>
-
-      <div style="margin-bottom: 24px; padding: 20px; background: var(--card); border-left: 4px solid var(--accent2); border-radius: 8px;">
-        <h3 style="margin: 0 0 8px; color: var(--accent2);">Comprehensive Diagnostics</h3>
-        <p style="color: var(--muted); margin: 0;">Conducted full residual diagnostics including Q-Q plots, residual vs. fitted plots, and scale-location plots to validate OLS assumptions. Ensured linearity, normality, homoscedasticity, and independence of residuals.</p>
-      </div>
-
-      <div style="padding: 20px; background: var(--card); border-left: 4px solid var(--accent); border-radius: 8px;">
-        <h3 style="margin: 0 0 8px; color: var(--accent);">Statistical Significance Testing</h3>
-        <p style="color: var(--muted); margin: 0;">Evaluated p-values and confidence intervals for all predictors to determine statistical significance. Interpreted coefficients to understand the magnitude and direction of each variable's effect on emissions.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Call to Action -->
-<section class="section" style="background: rgba(24, 40, 71, 0.3);">
-  <div class="container" style="text-align: center;">
-    <h2>Explore the Full Analysis</h2>
-    <p style="color: var(--muted); max-width: 600px; margin: 0 auto 24px;">View the complete Jupyter notebook on GitHub to see the detailed code, visualizations, and statistical analysis.</p>
-    <a class="btn primary" target="_blank" href="https://github.com/Lillian-Elek-Data/ML-with-Python/blob/main/2009-CO2-emmissions%20ML/ML%20OLS%20Regression%20with%20CO2%20Data.ipynb">
-      <i class="fa-brands fa-github"></i> View Full Project on GitHub
-    </a>
   </div>
 </section>
 
@@ -287,7 +339,7 @@
   </div>
 
   <div class="container legal">
-    <p>© <span id="year"></span> Lillian Elek — Data Analytics Portfolio</p>
+    <p>© <span id="year"></span> Lillian Elek — Data Science Portfolio</p>
   </div>
 </footer>
 
@@ -304,6 +356,27 @@
     });
   }
 </script>
+
+<!-- JS hydrator -->
+  <script src="assets/js/links.js"></script>
+  <script>
+    document.querySelectorAll("[data-project]").forEach(container => {
+      const key = container.dataset.project; // "stroke"
+
+      if (!window.LINKS[key]) {
+        console.warn(`Missing LINKS entry for project: ${key}`);
+        return;
+      }
+
+      const links = window.LINKS[key];
+
+      const projectLink = container.querySelector(".project-link");
+      const repoLink = container.querySelector(".repo-link");
+
+      if (projectLink) projectLink.href = links.project;
+      if (repoLink) repoLink.href = links.repo;
+    });
+  </script>
 
 </body>
 </html>
