@@ -6,7 +6,7 @@ window.LINKS = {
     },
   weather: {
     project: "weather_project_page.html",
-    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/weather-ml/Weather%20Data%20OLS%20Regression.ipynb"
+    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/weather-ml/notebooks/weather_data_ols_regression.ipynb"
     },
   sql: {
     project: "",
@@ -14,10 +14,10 @@ window.LINKS = {
   },
   books: {
     project: "",
-    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/books-read-linear-regression/Number%20of%20Books%20Read%20-%20SLR.ipynb"
+    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/books-read-linear-regression/number_of_books_read_slr.ipynb"
   },
   co2: {
     project: "",
-    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/co2-emissions-ols/ML%20OLS%20Regression%20with%20CO2%20Data.ipynb"
+    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/co2-emissions-ols/notebooks/01_co2_ols_regression.ipynb"
     }
 };
