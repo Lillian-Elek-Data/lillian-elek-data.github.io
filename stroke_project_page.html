@@ -100,9 +100,13 @@
 <section class="content-section">
   <div class="container">
     <h2>Problem Statement</h2>
-    <p>Stroke is a leading cause of death and disability worldwide, creating immense personal, family, and economic burdens, 
-      with millions suffering long-term impairments and significant costs. Fortunately many risk factors are preventable with early intervention. 
-      I built a predictive model that can identify high-risk patients based on readily available clinical data.</p>
+    <p>Stroke is a leading cause of death and disability worldwide, creating immense personal, family, and economic burdens, with millions suffering long-term impairments and significant costs. 
+      Beyond its human toll, stroke places a substantial strain on the healthcare industry, generating billions in direct and indirect expenditures across emergency care, specialized treatment, rehabilitation, 
+      and long-term disease management. These demands strain critical resources, expose workforce and access challenges, and reveal gaps in care for diverse populations, underscoring the 
+      need for integrated, data-driven approaches that improve early identification, care coordination, and outcomes. Addressing the growing stroke burden requires sustained investment in 
+      infrastructure, clinical capacity, and prevention strategies to reduce disability, improve equity, and control rising healthcare costs. 
+      
+      <p><strong>The Objective:</strong>Build a predictive model that can identify high-risk stroke patients based on readily available clinical data.</p>
     
     <div class="highlight-box">
       <strong>Business Impact:</strong> Early identification of high-risk patients enables healthcare providers to implement preventive measures, 
@@ -113,8 +117,8 @@
     <ul>
       <li><strong>Class Imbalance:</strong> Only 4.9% of patients experienced strokes, requiring careful handling of imbalanced data </li>
       <li><strong>Missing Data:</strong> Real-world healthcare data contained missing values that needed strategic imputation </li>
-      <li><strong>Feature Selection:</strong> Identifying which clinical markers were truly predictive versus correlated </li>
-      <li><strong>Model Interpretability:</strong> Ensuring the model could be explained to healthcare professionals for clinical adoption </li>
+      <li><strong>Feature Selection:</strong> Identifying which clinical markers are truly predictive versus correlated </li>
+      <li><strong>Model Interpretability:</strong> Ensuring the model can be explained to healthcare professionals for clinical adoption </li>
     </ul>
   </div>
 </section>
@@ -201,35 +205,63 @@
     
     <h3>Top Predictive Features</h3>
     <p>The model identified several strong predictors of stroke risk:</p>
+    <img src="assets/stroke-odds.png" alt="Feature Coefficients & Odds Ratios" style="width: 75%; max-width: 1000px; height: auto;">
+
     <ul>
       <li><strong>Age:</strong> Most significant predictor—each decade of life multiplies stroke odds by 5.86× (486% increase)</li>
       <li><strong>Hypertension:</strong> Patients with hypertension have 1.83 higher stroke odds (83% increase) compared to those without hypertension</li>
-      <li><strong>Average Glucose Level:</strong> Higher glucose levels moderately increased risk (OR = 1.25 per log-unit increase, 25% higher odds)</li>
+      <li><strong>Average Glucose Level:</strong> Higher glucose levels moderately increased stroke risk (OR = 1.25 per log-unit increase, 25% higher odds)</li>
     </ul>
 
     <h3>Model Performance Analysis</h3>
     <div class="highlight-box">
-      <p><strong>Precision vs. Recall Trade-off:</strong> The model achieved 73% overall accuracy with a deliberate bias toward sensitivity. 
-        Breaking down the stroke prediction performance:</p>
+      <p><strong>Strong Generalization</strong></p>
+        <p>With minimal train-test performance gaps in this highly imbalanced healthcare dataset the model demonstrates strong classification performance. 
+          Close alignment across all metrics, particularly ROC-AUC and recall—indicates the model has learned true, underlying relationships between risk factors 
+          (e.g., age, hypertension, glucose levels) and stroke outcomes, rather than memorizing patterns.</p>
+      <p><strong>Clinically Aligned Error Behavior</strong></p>
+        <p>Error analysis reveals the model's misclassifications are dominated by false positives rather than false negatives, meaning the model rarely misses true stroke cases. 
+          This behavior aligns with clinical priorities where sensitivity is critical and false alarms are preferable to missed diagnoses.</p>
+      
+
+      <p><strong>Precision vs. Recall Trade-off</strong></p>
+        <p>The model achieved 73% overall accuracy with a deliberate bias toward sensitivity. 
+          Breaking down the stroke prediction performance:</p>
       <ul style="margin: 8px 0 0;">
-        <li><strong>Recall (80%):</strong> The model successfully identifies 4 out of 5 patients who will actually experience a stroke—critical for early intervention</li>
-        <li><strong>Precision (13%):</strong> When the model flags a patient as high-risk, it's correct 13% of the time, resulting in false alarms for preventive screening</li>
-        <li><strong>Clinical Context:</strong> In healthcare screening, this trade-off prioritizes catching actual stroke cases over minimizing false positives. Missing a real stroke (false negative) has far more serious consequences than flagging a low-risk patient for additional screening (false positive)</li>
-        <li><strong>No Stroke Class (99% precision, 72% recall):</strong> The model is highly reliable at identifying low-risk patients, correctly clearing 99% of patients it flags as low-risk</li>
+        <li><strong>Recall (80%):</strong> The model successfully identifies 4 out of 5 patients who will actually experience a stroke—critical for early intervention.</li>
+        <li><strong>Precision (13%):</strong> When the model flags a patient as high-risk, it's correct 13% of the time, resulting in false alarms for preventive screening.</li>
+        <li><strong>Clinical Context:</strong> In healthcare screening, this trade-off prioritizes catching actual stroke cases over minimizing false positives. Missing a real stroke (false negative) has far more serious consequences than flagging a low-risk patient for additional screening (false positive).</li>
+        <li><strong>No Stroke Class (99% precision, 72% recall):</strong> The model is highly reliable at identifying low-risk patients, correctly clearing 99% of patients it flags as low-risk.</li>
       </ul>
     </div>
 
     <h3>Business Applications</h3>
-    <ul>
-      <li><strong>Screening Tool:</strong> Deploy as a first-pass screening system to identify patients who need comprehensive stroke risk assessment</li>
-      <li><strong>Resource Allocation:</strong> Direct preventive care resources (lifestyle counseling, medication management) to flagged patients</li>
-      <li><strong>Risk Stratification:</strong> Segment patient populations by risk level to prioritize follow-up care and monitoring frequency</li>
-      <li><strong>Early Intervention Pipeline:</strong> Integrate with clinical workflows to trigger automated alerts for high-risk patients, enabling proactive intervention</li>
-      <li><strong>Cost-Benefit Analysis:</strong> While false positives generate screening costs, catching actual strokes early prevents the far greater costs of emergency treatment and long-term disability care</li>
-    </ul>
+      <p><strong>1. Screening Tool:</strong> Deploy as a first-pass screening system to identify patients who need comprehensive stroke risk assessment.</p>
+      <p><strong>2. Resource Allocation:</strong> Direct preventive care resources (lifestyle counseling, medication management) to flagged patients. Early intervention is a key to lower economic burdens.</p>
+      <p><strong>3. Risk Stratification:</strong>Segment patient populations by risk level to prioritize follow-up care and monitoring frequency.</p>
+      <p><strong>4. Early Intervention Pipeline:</strong>Integrate with clinical workflows to trigger automated alerts for high-risk patients, enabling proactive intervention.</p>
+      <p><strong>5. Cost-Benefit Analysis:</strong>While false positives generate screening costs, catching actual strokes early prevents the far greater costs of emergency treatment and long-term disability care.</p>
+  
 
     <h3>Next Steps for Improvement</h3>
-    <p>Additional feature enhancement with additional clinical variables, tiered decision framework, or model comparison to capture best fitting model.</p>
+    <p>Additional feature enhancement with additional clinical variables, tiered decision framework, model comparison to capture best fitting model, or external
+      validation from different healthcare systems to assess real-world generalization.</p>
+   
+    <p><strong>Additional Clinical Variables</strong></p>
+    <ul>
+      <li>Family history of stroke</li>
+      <li>Detailed comorbidity data (atrial fibrillation, diabetes complications)</li>
+      <li>Longitudinal measurements (blood pressure trends, glucose control)</li>
+      <li>Atherosclerosis </li>
+      <li>High blood cholesterol and triglycerides</li>
+      <li>Medication history</li>
+    </ul>
+    <p><strong>Tiered Decision Framework</strong></p>
+    <ul>
+      <li>Low risk (< 0.3): Automatic clearance</li>
+      <li>Medium risk (0.3-0.7): Flag for human review</li>
+      <li>High risk (> 0.7): Immediate clinical attention</li>
+    </ul>
   </div>
 </section>
 
