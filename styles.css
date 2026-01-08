@@ -300,6 +300,7 @@ a:hover{ text-decoration:underline }
   .container{ padding: 0 16px }
   .hero h1{ font-size:30px }
   .card img{ height:230px }
+  .responsive-img {height:230px }
   .grid.cards-3, .grid.cards-2{ grid-template-columns:1fr }
   .pill-list{ grid-template-columns:1fr }
   .footer-contacts{ grid-template-columns:1fr }
