@@ -17,7 +17,7 @@ window.LINKS = {
     repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/books-read-linear-regression/number_of_books_read_slr.ipynb"
   },
   co2: {
-    project: "",
+    project: "co2_project_page.html",
     repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/co2-emissions-ols/notebooks/01_co2_ols_regression.ipynb"
     }
 };

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CO2 Emissions Prediction | Lillian Elek</title>
-  <meta name="description" content="OLS regression analysis predicting state-level CO2 emissions using environmental and economic factors.">
+  <meta name="description" content="OLS regression analysis predicting state-level CO2 emissions using population and energy generation factors.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,12 +47,12 @@
       <div>
         <h1>Emissions by the Equation: Predicting CO₂ with OLS</h1>
         <p class="lead">A regression-powered deep dive into what drives state-level carbon emissions across the United States.</p>
-        <p>This project uses Ordinary Least Squares regression to predict CO₂ emissions based on environmental and economic factors. Through log transformations, feature selection, and comprehensive diagnostics, I built a high-accuracy model revealing the key drivers of carbon emissions at the state level.</p>
+        <p>This project uses Ordinary Least Squares regression to predict CO₂ emissions based on population and energy generation factors. Through log transformations, feature selection, and comprehensive diagnostics, I built a high-accuracy model revealing the key drivers of carbon emissions at the state level.</p>
         
         <div class="project-meta" style="display: flex; gap: 24px; margin: 20px 0; flex-wrap: wrap;">
           <div class="project-meta-item" style="display: flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-calendar" style="color: var(--accent2);"></i>
-            <span>October 2025</span>
+            <span>December 2024</span>
           </div>
           <div class="project-meta-item" style="display: flex; align-items: center; gap: 8px;">
             <i class="fa-solid fa-code" style="color: var(--accent2);"></i>
@@ -108,11 +108,12 @@
 <section class="section" style="background: rgba(24, 40, 71, 0.3);">
   <div class="container">
     <h2>Problem Statement</h2>
-    <p>Climate change represents one of the most pressing challenges of our time, with carbon dioxide emissions being a primary driver of global warming. Understanding what factors contribute most significantly to CO₂ emissions at the state level is essential for developing effective environmental policies and reduction strategies.</p>
+    <p>Climate change represents one of the most pressing challenges of our time, with carbon dioxide emissions being a primary driver. 
+      Understanding what factors contribute most significantly to CO₂ emissions at the state level is essential for developing effective environmental policies and reduction strategies.</p>
     
     <p style="margin-top: 16px;">However, emissions patterns are influenced by a complex interplay of environmental, economic, and demographic factors. Without a quantitative understanding of these relationships, policymakers struggle to prioritize interventions and allocate resources effectively.</p>
 
-    <p style="margin-top: 16px;"><strong>The Objective:</strong> Build a predictive model that can accurately estimate state-level CO₂ emissions based on measurable characteristics, identify the most significant emission drivers, and provide actionable insights for emission reduction strategies.</p>
+    <p style="margin-top: 16px;"><strong>The Objective:</strong> Build a predictive model that can identify the most significant emission drivers and accurately estimate state-level CO₂ emissions based on measurable characteristics.</p>
   </div>
 </section>
 
@@ -141,10 +142,10 @@
   <div class="container">
     <h2>Challenges</h2>
     <ul>
-      <p><li><strong>Skewed Distributions:</strong> Many environmental and economic variables exhibited significant positive skew, violating OLS assumptions. Required careful transformation strategy to achieve normality without losing interpretability. </li></p>
-      <p><li><strong>Multicollinearity:</strong> Economic and population variables showed high intercorrelation, creating multicollinearity issues. Required careful feature selection to identify independent predictors. </li></p>
-      <p><li><strong>Scale Differences:</strong> Variables measured on vastly different scales (e.g., population vs. emissions) complicated direct comparison. Log transformations helped normalize scale differences.</li></p>
-      <li><strong>Assumption Validation:</strong> Meeting the four remaining OLS assumptions (linearity, independence, normality, homoscedasticity) simultaneously required iterative model refinement and diagnostic testing. </li>
+      <p><li><strong>Skewed Distributions:</strong> Many energy generation variables exhibited significant positive skew, potentially impacting model performance. This required transformation techniques to achieve a more symmetric distribution without losing interpretability. </li></p>
+      <p><li><strong>Multicollinearity:</strong> Energy generation and population variables showed high intercorrelation, creating multicollinearity issues. This required careful feature selection to identify independent predictors. </li></p>
+      <p><li><strong>Scale Differences:</strong> Variables measured on vastly different scales (e.g., population vs. emissions) complicated direct comparison. Log transformations and utilizing a standard scaler helped normalize the differences.</li></p>
+      <li><strong>Assumption Validation:</strong> Meeting the OLS assumptions (linearity, multicollinearity, normality, homoscedasticity, and autocorrelation) simultaneously required iterative model refinement and diagnostic testing. </li>
     </ul>  
   </div>
 </section>
@@ -161,7 +162,7 @@
         <i class="fa-solid fa-database"></i>
         <div>
           <strong>1. Data Preparation & Exploration & Preprocessing</strong>
-          <p>Loaded 2009 state-level environmental and economic data. Conducted exploratory data analysis to understand distributions, 
+          <p>Loaded 2009 state-level population, energy generation, and CO2 emissions data. Conducted exploratory data analysis to understand distributions, 
             identify outliers, and examine relationships between variables. Checked for missing values and data quality issues.</p>
         </div>
       </li>
@@ -188,8 +189,8 @@
         <i class="fa-solid fa-microscope"></i>
         <div>
           <strong>4. OLS Model Assumption Validation</strong>
-          <p>To ensure the statistical validity and interpretability of the OLS model, I conducted comprehensive residual analysis including Q-Q plots, residual vs. fitted plots, 
-            and scale-location plots. Validated linearity, normality, homoscedasticity, and independence assumptions. These checks improve confidence in the model’s conclusions.</p>
+          <p>To ensure the statistical credibility of the OLS model, I conducted comprehensive analysis including a histogram of the resuduals, Q-Q plots, residual vs. fitted plots, 
+            a Durbin-Watson test, as well as VIF diagnostics. Validated linearity, normality, homoscedasticity, independence, and autocorrelation assumptions. These checks improve confidence in the model’s conclusions.</p>
         </div>
       </li>
 
@@ -210,34 +211,6 @@
 <section class="section" style="background: rgba(24, 40, 71, 0.3);">
   <div class="container">
     <h2>Key Findings & Insights</h2>
-    
-    <!-- Top Predictive Features -->
-    <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
-      <h3 style="margin: 0 0 16px; color: var(--accent2);"><i class="fa-solid fa-star"></i> Top Predictive Features</h3>
-      <p style="color: var(--muted); margin-bottom: 16px;">The analysis revealed several key drivers of state-level CO₂ emissions:</p>
-      
-      <div class="grid cards-2" style="margin-top: 16px;">
-        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
-          <h4 style="margin: 0 0 8px; color: var(--accent2);">Economic Activity</h4>
-          <p style="color: var(--muted); margin: 0; font-size: 14px;">State GDP and industrial output showed strong positive correlation with emissions, highlighting the carbon intensity of economic production.</p>
-        </div>
-        
-        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
-          <h4 style="margin: 0 0 8px; color: var(--accent2);">Energy Consumption</h4>
-          <p style="color: var(--muted); margin: 0; font-size: 14px;">Total energy use emerged as a primary predictor, with different energy sources (fossil fuels vs. renewables) showing distinct impact patterns.</p>
-        </div>
-        
-        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
-          <h4 style="margin: 0 0 8px; color: var(--accent2);">Population Density</h4>
-          <p style="color: var(--muted); margin: 0; font-size: 14px;">Population size and density influenced emissions, though the relationship was moderated by urbanization patterns and transportation infrastructure.</p>
-        </div>
-        
-        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border: 1px solid #1f2435; border-radius: 8px;">
-          <h4 style="margin: 0 0 8px; color: var(--accent2);">Log-Transformed Effects</h4>
-          <p style="color: var(--muted); margin: 0; font-size: 14px;">Logarithmic transformations revealed multiplicative relationships, showing that percentage changes in predictors correspond to percentage changes in emissions.</p>
-        </div>
-      </div>
-    </div>
 
     <!-- Model Performance Analysis -->
     <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
@@ -258,16 +231,81 @@
           <li><strong>Residual patterns:</strong> Residuals showed random scatter around zero with no systematic patterns</li>
         </ul>
         
-        <h4 style="color: var(--accent2); margin: 24px 0 8px;">Assumption Validation</h4>
-        <ul style="color: var(--muted); margin-left: 20px;">
-          <li><strong>Linearity:</strong> Residual plots confirmed linear relationships between predictors and outcome</li>
-          <li><strong>Normality:</strong> Q-Q plots showed residuals follow normal distribution</li>
-          <li><strong>Homoscedasticity:</strong> Scale-location plots demonstrated constant variance of residuals</li>
-          <li><strong>Independence:</strong> No autocorrelation detected in residuals (Durbin-Watson ≈ 2.0)</li>
-        </ul>
+        <h4 style="color: var(--accent2); margin: 24px 0 12px;">Assumption Validation</h4>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; color: var(--muted); font-size: 14px;">
+           <thead>
+            <tr style="background: rgba(19, 33, 57, 0.5); border-bottom: 2px solid var(--accent2);">
+              <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 600;">Assumption</th>
+              <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 600;">Test/Method</th>
+              <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 600;">Result</th>
+              <th style="padding: 12px; text-align: center; color: var(--text); font-weight: 600;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #1f2435;">
+              <td style="padding: 12px;"><strong>Linearity</strong></td>
+              <td style="padding: 12px;">Residual plots, Pearson's r</td>
+              <td style="padding: 12px;">Strong linear patterns</td>
+              <td style="padding: 12px; text-align: center;">✅ Satisfied</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #1f2435;">
+              <td style="padding: 12px;"><strong>Homoscedasticity</strong></td>
+              <td style="padding: 12px;">Breusch-Pagan test</td>
+              <td style="padding: 12px;">p = 0.068</td>
+              <td style="padding: 12px; text-align: center;">✅ Satisfied</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #1f2435;">
+              <td style="padding: 12px;"><strong>Normality</strong></td>
+              <td style="padding: 12px;">Histogram, Q-Q plot</td>
+              <td style="padding: 12px;">Slight right skew</td>
+              <td style="padding: 12px; text-align: center;">⚠️ Minor concern</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #1f2435;">
+              <td style="padding: 12px;"><strong>Independence</strong></td>
+              <td style="padding: 12px;">Durbin-Watson</td>
+              <td style="padding: 12px;">DW = 2.412</td>
+              <td style="padding: 12px; text-align: center;">✅ Satisfied</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px;"><strong>Multicollinearity</strong></td>
+              <td style="padding: 12px;">VIF (stepwise selection)</td>
+              <td style="padding: 12px;">Expected low</td>
+              <td style="padding: 12px; text-align: center;">✅ Satisfied</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
+  </div>
+    
+    
+    <!-- Top Predictive Features -->
+    <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
+      <h3 style="margin: 0 0 16px; color: var(--accent2);"><i class="fa-solid fa-star"></i> Key Predictors of CO₂ Emissions</h3>
+      <p style="color: var(--muted); margin-bottom: 16px;">Stepwise regression identified three statistically significant features:</p>
+      
+      <div style="margin-top: 16px;">
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border-left: 4px solid var(--accent2); margin-bottom: 12px;">
+          <h4 style="margin: 0 0 8px; color: var(--accent2);">1. Population (coefficient = 0.63, p < 0.001)</h4>
+          <p style="color: var(--muted); margin: 0; font-size: 14px;">Strong positive effect — larger states emit more CO₂. Log transformation captured exponential growth patterns.</p>
+        </div>
+        
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border-left: 4px solid var(--accent2); margin-bottom: 12px;">
+          <h4 style="margin: 0 0 8px; color: var(--accent2);">2. Coal Generation (coefficient = 0.46, p < 0.001)</h4>
+          <p style="color: var(--muted); margin: 0; font-size: 14px;">Dominant emissions driver — coal-heavy states (Wyoming, West Virginia) show predictably high emissions. Most carbon-intensive energy source.</p>
+        </div>
+        
+        <div style="padding: 16px; background: rgba(19, 33, 57, 0.5); border-left: 4px solid #f59e42; margin-bottom: 0;">
+          <h4 style="margin: 0 0 8px; color: #f59e42;"><i class="fa-solid fa-triangle-exclamation"></i> 3. Wind Generation (coefficient = 0.12, p = 0.049)</h4>
+          <p style="color: var(--muted); margin: 0 0 8px; font-size: 14px;">Unexpected positive association — counterintuitive finding requiring further investigation.</p>
+          <p style="color: var(--muted); margin: 0; font-size: 13px; font-style: italic;">
+            <strong>Likely explanation:</strong> Confounding effect where high-wind states (Texas, Iowa) also have substantial fossil fuel generation. Model may capture state-level characteristics rather than wind's direct impact.
+          </p>
+        </div>
+      </div>
+    </div>
+    
     <!-- Next Steps -->
     <div style="margin-top: 24px; padding: 24px; background: var(--card); border: 1px solid #1f2435; border-radius: 12px;">
       <h3 style="margin: 0 0 16px; color: var(--accent2);"><i class="fa-solid fa-forward"></i> Next Steps for Improvement</h3>
@@ -282,8 +320,10 @@
         <li><strong>Outlier analysis:</strong> Investigate states with high residuals to understand unique emission patterns</li>
       </ul>
     </div>
+
   </div>
 </section>
+
 
 
 <!-- CTA -->
