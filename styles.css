@@ -258,6 +258,30 @@ a:hover{ text-decoration:underline }
   margin: 0 auto;
 }
 
+/* Image Card Container */
+.image-card {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* Keep default responsive-img behavior everywhere else */
+.image-card .responsive-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+/* Desktop ONLY: shrink image inside card */
+@media (min-width: 992px) {
+  .image-card .responsive-img {
+    max-width: 700px;  /* adjust as desired */
+  }
+}
+
 /* ---------- Responsive ---------- */
 
 /* Tablet / small laptop */
