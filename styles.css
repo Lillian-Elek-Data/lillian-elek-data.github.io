@@ -263,7 +263,7 @@ a:hover{ text-decoration:underline }
 /* Tablet / small laptop */
 @media (max-width: 960px){
   .container{ max-width: 860px }
-  .hero-inner, .split{ grid-template-columns:1fr }
+  .hero-inner, .split, .hero-content{ grid-template-columns:1fr }
   .grid.cards-3{ grid-template-columns:1fr 1fr }
   .card img{ height:190px }
   /* mobile menu appears */
