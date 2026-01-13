@@ -133,7 +133,7 @@ a:hover{ text-decoration:underline }
 .footer-contacts .contact-method a{ color:var(--text) }
 .legal{ text-align:center; color:#9aa3b8 }
 
-/* ===== Project Page Styles ===== */
+/* Project Page Styles */
 .project-hero {
   background: linear-gradient(135deg, #1a2847 0%, #0f1729 100%);
   border-bottom: 1px solid var(--line);
