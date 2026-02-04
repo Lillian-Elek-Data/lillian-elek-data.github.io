@@ -22,6 +22,6 @@ window.LINKS = {
     },
   cxr8: {
     project: "cxr8_project_page.html",
-    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/"
+    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/nih_chest_xray/notebooks/cxr8.ipynb"
     }
 };
