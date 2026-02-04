@@ -19,5 +19,9 @@ window.LINKS = {
   co2: {
     project: "co2_project_page.html",
     repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/co2-emissions-ols/notebooks/01_co2_ols_regression.ipynb"
+    },
+  cxr8: {
+    project: "cxr8_project_page.html",
+    repo: "https://github.com/Lillian-Elek-Data/ml-with-python/blob/main/projects/"
     }
 };

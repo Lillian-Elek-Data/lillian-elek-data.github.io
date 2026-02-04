@@ -373,13 +373,11 @@
       toggle.setAttribute('aria-expanded', String(open));
     });
   }
-  // keep your year script if you have it:
   const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 </script>
 
 
 <!-- JS hydrator -->
-
   <script src="assets/js/links.js"></script>
   <script>
     document.querySelectorAll("[data-project]").forEach(container => {

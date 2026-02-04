@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chest X-ray AI Classifier | Lillian Elek</title>
+  <meta name="description" content="Deep learning multi-label classification system for detecting 14 thoracic pathologies from chest X-ray images using transfer learning and DenseNet121.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+  
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">Lillian Elek</a>
+
+    <!-- Mobile menu toggle -->
+    <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <!-- Main nav -->
+    <nav id="nav-menu" class="nav-menu">
+      <!-- set .active per page -->
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="about.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Project Hero -->
+<section class="project-hero">
+  <div class="container">
+    <h1>AI-Powered Chest X-ray Pathology Detection</h1>
+    <p class="lead">An advanced deep learning system that simultaneously detects 14 thoracic pathologies from chest X-ray images. 
+      Using transfer learning with DenseNet121 on 112,000+ medical images, this model provides automated screening assistance 
+      to accelerate diagnosis in emergency departments and extend diagnostic capabilities to resource-limited settings.</p>
+    
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <i class="fa-solid fa-calendar"></i>
+        <span>January 2026</span>
+      </div>
+      <div class="project-meta-item">
+        <i class="fa-solid fa-code"></i>
+        <span>PyTorch, DenseNet121, GradCAM</span>
+      </div>
+    </div>
+
+    <div class="skill-tags">
+      <span class="skill-tag">Deep Learning</span>
+      <span class="skill-tag">Computer Vision</span>
+      <span class="skill-tag">Transfer Learning</span>
+      <span class="skill-tag">Multi-Label Classification</span>
+      <span class="skill-tag">Medical AI</span>
+      <span class="skill-tag">Model Interpretability</span>
+      <span class="skill-tag">Class Imbalance</span>
+    </div>
+  </div>
+</section>
+
+<!-- Key Results -->
+<section class="content-section">
+  <div class="container">
+    <h2>Key Results</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value">14</div>
+        <div class="stat-label">Pathologies Detected</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">5K+</div>
+        <div class="stat-label">Training Images</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">74.04%</div>
+        <div class="stat-label">Mean AUC-ROC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">GradCAM</div>
+        <div class="stat-label">Model Interpretability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem Statement -->
+<section class="content-section">
+  <div class="container">
+    <h2>Problem Statement</h2>
+    <p>Chest X-rays are one of the most common diagnostic imaging procedures worldwide, with millions performed annually. However, accurate interpretation requires specialized expertise, is time-intensive, and prone to inter-observer variability. In emergency departments and resource-limited settings, delays in diagnosis can lead to adverse patient outcomes, while high-volume screening programs struggle with throughput and quality consistency.</p>
+      
+    <p><strong>The Objective:</strong> Develop an AI model capable automatically of detecting 14 thoracic pathologies from chest X-ray images, providing rapid screening assistance to radiologists while maintaining interpretability and clinical significance.</p>
+    
+    <div class="highlight-box">
+      <strong>Clinical Impact:</strong> Automated pathology detection can accelerate screening and triage, reduce missed findings, 
+      provide second opinions to improve diagnostic accuracy, and enhance educational training for pattern recognition.
+    </div>
+
+    <h3>Target Pathologies (Multi-Label Classification)</h3>
+    <p>Each X-ray image can have multiple co-occurring conditions, reflecting real clinical scenarios:</p>
+    <ul>
+      <li><strong>Atelectasis</strong> (~11% prevalence) - Partial or complete lung collapse</li>
+      <li><strong>Cardiomegaly</strong> (~2.5%) - Enlarged heart</li>
+      <li><strong>Consolidation</strong> (~4%) - Lung tissue filled with liquid/solid material</li>
+      <li><strong>Edema</strong> (~2%) - Fluid accumulation in lungs</li>
+      <li><strong>Effusion</strong> (~13%) - Fluid between lung and chest wall</li>
+      <li><strong>Emphysema</strong> (~2%) - Damaged air sacs in lungs</li>
+      <li><strong>Fibrosis</strong> (~1.5%) - Lung tissue scarring</li>
+      <li><strong>Hernia</strong> (<0.3%) - Organ pushes through muscle/tissue</li>
+      <li><strong>Infiltration</strong> (~17%) - Substance denser than air in lungs</li>
+      <li><strong>Mass</strong> (~5%) - Lung lesion >3cm</li>
+      <li><strong>Nodule</strong> (~6%) - Small lung lesion <3cm</li>
+      <li><strong>Pleural Thickening</strong> (~3%) - Thickened pleural lining</li>
+      <li><strong>Pneumonia</strong> (~1.3%) - Lung infection/inflammation</li>
+      <li><strong>Pneumothorax</strong> (~5%) - Collapsed lung (air in pleural space)</li>
+    </ul>
+
+    <h3>Technical Challenges</h3>
+    <ul>
+      <li><strong>Severe Class Imbalance:</strong> Disease prevalence ranges from <0.3% to ~17%, with some conditions extremely rare in the dataset</li>
+      <li><strong>Multi-Label Complexity:</strong> Each image requires 14 independent binary predictions with potential co-occurring conditions</li>
+      <li><strong>Label Uncertainty:</strong> Ground truth labels extracted via NLP from radiology reports, not manually verified by radiologists</li>
+      <li><strong>Domain Adaptation:</strong> Transfer learning from natural images (ImageNet) to medical imaging requires careful fine-tuning</li>
+      <li><strong>Clinical Trust:</strong> Model must be interpretable to gain acceptance from healthcare professionals</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Methodology -->
+<section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <h2>Methodology</h2>
+    <p>This project implements a comprehensive deep learning pipeline optimized for medical image classification. The methodology prioritizes 
+      both model performance and clinical interpretability, employing state-of-the-art techniques to handle class imbalance and ensure robust generalization.</p>
+    
+    <ul class="methodology-list">
+      <li>
+        <i class="fa-solid fa-database"></i>
+        <div>
+          <strong>1. Dataset & Exploratory Analysis</strong>
+          <p>The analysis utilized the <strong>NIH ChestX-ray8 dataset</strong>, comprising 112,120 frontal-view chest X-rays from 30,805 unique patients. 
+            Images are 1024×1024 pixels with multi-label annotations for 14 pathological conditions. Initial exploratory data analysis revealed 
+            severe class imbalance (rare diseases <1% prevalence), distribution patterns of co-occurring conditions, and dataset characteristics 
+            including label extraction methodology (NLP-derived, not manually verified). This analysis informed preprocessing strategies, 
+            loss function selection, and evaluation metric choices tailored to medical screening applications.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-scissors"></i>
+        <div>
+          <strong>2. Data Preprocessing & Stratified Splitting</strong>
+          <p>Images were resized to 224×224 pixels for computational efficiency while preserving diagnostic features. Pixel values were normalized 
+            to match ImageNet preprocessing requirements (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]). The dataset was split using 
+            <strong>stratified multi-label splitting</strong> to preserve class distribution across train/validation/test sets (70%/15%/15%), 
+            ensuring representative samples of rare diseases in each subset. Patient-level splitting prevented data leakage from multiple images 
+            of the same patient appearing across splits.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-brain"></i>
+        <div>
+          <strong>3. Transfer Learning with DenseNet121</strong>
+          <p>Leveraged <strong>DenseNet121</strong> pretrained on ImageNet as the feature extraction backbone, adapting it for medical imaging through 
+            fine-tuning. DenseNet's dense connections enable efficient gradient flow and feature reuse, making it particularly effective for 
+            medical images with subtle pathological patterns. The pretrained convolutional layers were initially frozen, then gradually unfrozen 
+            to prevent catastrophic forgetting while allowing domain adaptation to chest X-ray characteristics. The final fully connected layer 
+            was replaced with a 14-output sigmoid layer for independent multi-label predictions.</p>
+        </div>
+      </li>
+      
+      <li>
+        <i class="fa-solid fa-balance-scale"></i>
+        <div>
+          <strong>4. Class Imbalance Mitigation</strong>
+          <p>To address severe class imbalance, implemented <strong>weighted Binary Cross-Entropy loss</strong> where each disease class received 
+            weights inversely proportional to its prevalence. This ensures the model learns to detect rare but critical conditions (e.g., Pneumothorax, 
+            Hernia) rather than defaulting to predicting the majority class. Loss weights were computed as: weight = (total_samples) / 
+            (2 × positive_samples), with additional scaling for extreme imbalances. This approach prioritizes sensitivity for screening 
+            applications where false negatives have higher clinical cost than false positives.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-chart-line"></i>
+        <div>
+          <strong>5. Training Strategy & Optimization</strong>
+          <p>Model training employed Adam optimizer with learning rate scheduling (initial LR: 1e-4, reduced on plateau). Training proceeded in 
+            two phases: (1) frozen convolutional layers with trainable classifier head (5 epochs), then (2) full fine-tuning with lower learning 
+            rate (15+ epochs). Early stopping with patience=5 on validation AUC-ROC prevented overfitting. Batch size of 32 balanced memory 
+            constraints with gradient stability. Training monitored loss convergence and per-disease validation metrics to identify potential issues.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-microscope"></i>
+        <div>
+          <strong>6. Comprehensive Evaluation Framework</strong>
+          <p>Model performance assessed using <strong>multiple metrics appropriate for imbalanced medical data</strong>: (1) <strong>AUC-ROC</strong> 
+            for overall discrimination ability regardless of threshold, (2) <strong>Average Precision (AP)</strong> emphasizing performance on positive 
+            cases, (3) <strong>F1-Score</strong> at 0.5 threshold for balanced precision-recall assessment, and (4) per-disease confusion matrices 
+            for detailed error analysis. Metrics computed separately for each of 14 diseases to identify condition-specific strengths and weaknesses.</p>
+        </div>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-eye"></i>
+        <div>
+          <strong>7. Model Interpretability with GradCAM</strong>
+          <p><strong>Gradient-weighted Class Activation Mapping (GradCAM)</strong> visualizations generated to understand spatial attention patterns 
+            and build clinical trust. GradCAM highlights image regions most influential in model predictions by computing gradients of target 
+            disease classes with respect to final convolutional feature maps. This interpretability analysis revealed both successes (attention 
+            on anatomically relevant regions) and limitations (focus on image borders and artifacts), providing critical insights for model 
+            improvement and deployment considerations.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Results & Analysis -->
+<section class="content-section">
+  <div class="container">
+    <h2>Results & Key Findings</h2>
+    
+    <p><strong>Transfer Learning Success:</strong> Pretrained DenseNet121 weights from ImageNet effectively transferred to chest X-ray classification 
+      despite significant domain differences. The model learned to recognize complex pathological patterns without training from scratch, validating 
+      transfer learning as a powerful technique for medical AI with limited labeled data. Fine-tuning enabled adaptation of natural image features 
+      to clinical patterns, achieving convergence within reasonable computational resources.</p>
+
+    <p><strong>Critical Discovery - Artifact Learning:</strong> GradCAM interpretability analysis uncovered a fundamental limitation. Visualizations 
+      showed the model frequently focusing on <strong>image borders and non-anatomical artifacts</strong> (patient IDs, markers, edge effects) 
+      rather than disease regions. While achieving reasonable validation metrics, the model may have learned spurious correlations that could fail 
+      when deployed in different clinical environments. This highlights the critical importance of interpretability tools before clinical deployment.</p>
+
+    <h3>Model Performance Analysis</h3>
+    
+    <div class="highlight-box">
+      <strong>Overall Performance Metrics:</strong>
+      <table style="width: 100%; border-collapse: collapse; margin: 15px 0; color: var(--text);">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--line);">
+            <th style="text-align: left; padding: 8px;">Metric</th>
+            <th style="text-align: center; padding: 8px;">Validation</th>
+            <th style="text-align: center; padding: 8px;">Test</th>
+            <th style="text-align: center; padding: 8px;">Difference</th>
+            <th style="text-align: left; padding: 8px;">Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 8px;"><strong>Mean AUC-ROC</strong></td>
+            <td style="text-align: center; padding: 8px;">0.7299</td>
+            <td style="text-align: center; padding: 8px;">0.7404</td>
+            <td style="text-align: center; padding: 8px; color: var(--accent2);">+0.0105</td>
+            <td style="padding: 8px;"><strong>Fair discriminative ability</strong> - model fairly distinguishes between positive and negative cases. Difference < 0.02 indicates <strong>strong generalization with no overfitting</strong>.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 8px;"><strong>Mean Average Precision</strong></td>
+            <td style="text-align: center; padding: 8px;">0.1477</td>
+            <td style="text-align: center; padding: 8px;">0.1419</td>
+            <td style="text-align: center; padding: 8px;">-0.0058</td>
+            <td style="padding: 8px;"><strong>Robust performance on imbalanced classes</strong> - AP emphasizes rare disease detection. Stable validation-test performance confirms model reliability given severe class imbalance.</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--line);">
+            <td style="padding: 8px;"><strong>Mean F1-Score</strong></td>
+            <td style="text-align: center; padding: 8px;">0.1685</td>
+            <td style="text-align: center; padding: 8px;">0.1701</td>
+            <td style="text-align: center; padding: 8px; color: var(--accent2);">+0.0016</td>
+            <td style="padding: 8px;">Reflects precision-recall balance at 0.5 threshold. Consistent across validation and test sets, demonstrating stable classification performance.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p style="margin: 10px 0 0 0;"><strong>✓ Overall Assessment:</strong> Test performance ≥ validation across primary metrics with differences < 0.02 = <strong>excellent generalization, no overfitting</strong>. Model successfully transfers learning from validation to unseen test data.</p>
+    </div>
+
+    <h3>Per-Disease Performance Breakdown</h3>
+    
+    <p><strong>Best Performing Diseases (Test AUC-ROC):</strong></p>
+    <ul>
+      <li><strong>Hernia: 0.926</strong> - Exceptional discrimination, though limited by extreme rarity (<0.3% prevalence)</li>
+      <li><strong>Pneumothorax: 0.866</strong> - Critical finding: strong performance on this life-threatening condition enables reliable screening</li>
+      <li><strong>Fibrosis: 0.845</strong> - Solid detection despite low prevalence (~1.5%)</li>
+    </ul>
+
+    <p><strong>Worst Performing Diseases (Test AUC-ROC):</strong></p>
+    <ul>
+      <li><strong>Pneumonia: 0.492</strong> - Below random baseline (0.5), indicating model struggles with this condition despite clinical importance</li>
+      <li><strong>Infiltration: 0.583</strong> - Weak discrimination despite being common (~17% prevalence), possibly due to vague radiological definition</li>
+      <li><strong>Nodule: 0.606</strong> - Modest performance; small lesions may be difficult to detect at 224×224 resolution</li>
+    </ul>
+
+    <p><strong>Most Stable Performance (Smallest Val-Test Difference):</strong></p>
+    <ul>
+      <li><strong>Edema: -0.0008</strong> - Nearly perfect consistency across splits</li>
+      <li><strong>Effusion: +0.0022</strong> - Highly stable, reliable predictions</li>
+      <li><strong>Pleural Thickening: -0.0076</strong> - Consistent performance</li>
+    </ul>
+
+
+    <h3>Limitations & Deployment Considerations</h3>
+    <ul>
+      <li><strong>Not a Diagnostic Tool:</strong> Predictions are probabilistic and must be validated by qualified radiologists; this is a 
+        screening assistant, not a replacement for human expertise</li>
+      <li><strong>Dataset Constraints:</strong> Trained only on frontal X-rays with labels from automated NLP (not manually verified by radiologists), 
+        introducing potential label noise and limiting scope to specific view types</li>
+      <li><strong>Artifact Learning:</strong> GradCAM reveals model may focus on image borders and non-anatomical markers rather than disease 
+        features, potentially limiting real-world generalization to different imaging systems</li>
+      <li><strong>No Clinical Context:</strong> Cannot incorporate patient history, symptoms, laboratory values, or prior imaging that inform 
+        real diagnostic decisions</li>
+      <li><strong>Not FDA-Approved:</strong> Research project only; requires institutional review, ethical approval, and regulatory clearance 
+        before clinical deployment</li>
+    </ul>
+
+    <h3>Recommendations for Future Improvement</h3>
+    
+    <p><strong>1. Address Artifact Learning (Critical Priority)</strong></p>
+    <ul>
+      <li><strong>Problem:</strong> GradCAM analysis revealed the model focuses on image borders and non-anatomical artifacts rather than disease features</li>
+      <li><strong>Solutions:</strong> Implement aggressive center cropping to remove edge artifacts and text overlays; add stronger data 
+        augmentation (rotation, translation, scaling) to reduce reliance on spurious correlations; systematically remove patient identifiers 
+        and institutional markers from images; investigate dataset for systematic artifacts</li>
+      <li><strong>Impact:</strong> Essential for real-world deployment; current model may fail when exposed to different imaging systems or hospitals 
+        due to learning dataset-specific artifacts rather than clinical features</li>
+    </ul>
+
+    <p><strong>2. External Validation on Independent Datasets</strong></p>
+    <ul>
+      <li><strong>Current Gap:</strong> Model only evaluated on NIH ChestX-ray8 data from specific institutions</li>
+      <li><strong>Solutions:</strong> Test on external datasets (MIMIC-CXR from different hospitals, CheXpert from Stanford, international sources); 
+        evaluate performance across different imaging equipment manufacturers; assess demographic generalization (age, gender, geography); 
+        compare metrics to published benchmarks and identify domain shift issues</li>
+      <li><strong>Impact:</strong> Proves clinical viability and establishes true generalization capability before deployment; validates whether 
+        performance transfers beyond training data characteristics</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Technical Skills Demonstrated -->
+<section class="content-section" style="background: rgba(24, 40, 71, 0.3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <h2>Technical Skills Demonstrated</h2>
+    <p style="color: var(--muted); margin-bottom: 20px;">This project showcases advanced deep learning and medical AI capabilities from data preprocessing through model interpretability.</p>
+    
+    <div class="skill-tags">
+      <span class="skill-tag">PyTorch</span>
+      <span class="skill-tag">Deep Learning</span>
+      <span class="skill-tag">Computer Vision</span>
+      <span class="skill-tag">Transfer Learning</span>
+      <span class="skill-tag">DenseNet Architecture</span>
+      <span class="skill-tag">Multi-Label Classification</span>
+      <span class="skill-tag">Class Imbalance Handling</span>
+      <span class="skill-tag">Weighted Loss Functions</span>
+      <span class="skill-tag">Stratified Splitting</span>
+      <span class="skill-tag">GradCAM Visualization</span>
+      <span class="skill-tag">Model Interpretability</span>
+      <span class="skill-tag">Medical Image Processing</span>
+      <span class="skill-tag">AUC-ROC Analysis</span>
+      <span class="skill-tag">Precision-Recall Curves</span>
+      <span class="skill-tag">Confusion Matrix Analysis</span>
+      <span class="skill-tag">NumPy</span>
+      <span class="skill-tag">Pandas</span>
+      <span class="skill-tag">Matplotlib/Seaborn</span>
+      <span class="skill-tag">scikit-learn</span>
+      <span class="skill-tag">Data Augmentation</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="content-section" data-project="cxr8">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Explore the Full Project</h2>
+      <p class="muted">Dive into the complete analysis, code, training pipeline, and GradCAM visualizations</p>
+
+      <div class="btn-group">
+        <a class="btn primary repo-link" target="_blank">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </a>
+
+        <a class="btn" href="projects.html">
+          <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" class="site-footer">
+  <div class="container footer-contacts">
+    <section class="contact-method">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <h3>Email</h3>
+      <a href="mailto:lillianelek@gmail.com">lillianelek@gmail.com</a>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i>
+      <h3>Phone</h3>
+      <span>+1 (484) 885-5492</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+      <h3>Location</h3>
+      <span>Colorado, USA</span>
+    </section>
+
+    <section class="contact-method">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      <h3>Other</h3>
+      <span>
+        <a href="https://www.linkedin.com/in/lillian-elek-4069a552" target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/Lillian-Elek-Data/portfolio-site" target="_blank" rel="noopener">GitHub</a>
+      </span>
+    </section>
+  </div>
+
+  <div class="container legal">
+    <p>© <span id="year"></span> Lillian Elek — Data Science Portfolio</p>
+  </div>
+</footer>
+
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<!-- Responsive -->
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+  const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+</script>
+
+<!-- JS hydrator -->
+  <script src="assets/js/links.js"></script>
+  <script>
+    document.querySelectorAll("[data-project]").forEach(container => {
+      const key = container.dataset.project; // "stroke"
+
+      if (!window.LINKS[key]) {
+        console.warn(`Missing LINKS entry for project: ${key}`);
+        return;
+      }
+      const links = window.LINKS[key];
+      const projectLink = container.querySelector(".project-link");
+      const repoLink = container.querySelector(".repo-link");
+
+      if (projectLink) projectLink.href = links.project;
+      if (repoLink) repoLink.href = links.repo;
+    });
+  </script>
+
+</body>
+</html>
