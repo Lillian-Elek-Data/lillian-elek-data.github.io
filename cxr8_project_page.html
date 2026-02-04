@@ -46,7 +46,7 @@
   <div class="container">
     <h1>AI-Powered Chest X-ray Pathology Detection</h1>
     <p class="lead">An advanced deep learning system that simultaneously detects 14 thoracic pathologies from chest X-ray images. 
-      Using transfer learning with DenseNet121 on 112,000+ medical images, this model provides automated screening assistance 
+      Using transfer learning with DenseNet121 on 5,000 medical images, this model provides automated screening assistance 
       to accelerate diagnosis in emergency departments and extend diagnostic capabilities to resource-limited settings.</p>
     
     <div class="project-meta">
@@ -82,7 +82,7 @@
         <div class="stat-label">Pathologies Detected</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value">5K+</div>
+        <div class="stat-value">3K+</div>
         <div class="stat-label">Training Images</div>
       </div>
       <div class="stat-card">
@@ -103,7 +103,7 @@
     <h2>Problem Statement</h2>
     <p>Chest X-rays are one of the most common diagnostic imaging procedures worldwide, with millions performed annually. However, accurate interpretation requires specialized expertise, is time-intensive, and prone to inter-observer variability. In emergency departments and resource-limited settings, delays in diagnosis can lead to adverse patient outcomes, while high-volume screening programs struggle with throughput and quality consistency.</p>
       
-    <p><strong>The Objective:</strong> Develop an AI model capable automatically of detecting 14 thoracic pathologies from chest X-ray images, providing rapid screening assistance to radiologists while maintaining interpretability and clinical significance.</p>
+    <p><strong>The Objective:</strong> Develop an AI model capable of automatically of detecting 14 thoracic pathologies from chest X-ray images, providing rapid screening assistance to radiologists while maintaining interpretability and clinical significance.</p>
     
     <div class="highlight-box">
       <strong>Clinical Impact:</strong> Automated pathology detection can accelerate screening and triage, reduce missed findings, 
@@ -135,7 +135,6 @@
       <li><strong>Multi-Label Complexity:</strong> Each image requires 14 independent binary predictions with potential co-occurring conditions</li>
       <li><strong>Label Uncertainty:</strong> Ground truth labels extracted via NLP from radiology reports, not manually verified by radiologists</li>
       <li><strong>Domain Adaptation:</strong> Transfer learning from natural images (ImageNet) to medical imaging requires careful fine-tuning</li>
-      <li><strong>Clinical Trust:</strong> Model must be interpretable to gain acceptance from healthcare professionals</li>
     </ul>
   </div>
 </section>
@@ -152,11 +151,9 @@
         <i class="fa-solid fa-database"></i>
         <div>
           <strong>1. Dataset & Exploratory Analysis</strong>
-          <p>The analysis utilized the <strong>NIH ChestX-ray8 dataset</strong>, comprising 112,120 frontal-view chest X-rays from 30,805 unique patients. 
-            Images are 1024×1024 pixels with multi-label annotations for 14 pathological conditions. Initial exploratory data analysis revealed 
-            severe class imbalance (rare diseases <1% prevalence), distribution patterns of co-occurring conditions, and dataset characteristics 
-            including label extraction methodology (NLP-derived, not manually verified). This analysis informed preprocessing strategies, 
-            loss function selection, and evaluation metric choices tailored to medical screening applications.</p>
+          <p>Initial exploratory data analysis revealed severe class imbalance (rare diseases <1% prevalence) and dataset characteristics 
+            including label extraction methodology (NLP-derived, not manually verified). This analysis informed preprocessing strategies 
+            and evaluation metric choices tailored to medical screening applications.</p>
         </div>
       </li>
       
@@ -165,7 +162,7 @@
         <div>
           <strong>2. Data Preprocessing & Stratified Splitting</strong>
           <p>Images were resized to 224×224 pixels for computational efficiency while preserving diagnostic features. Pixel values were normalized 
-            to match ImageNet preprocessing requirements (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]). The dataset was split using 
+            to match ImageNet preprocessing requirements (mean=[0.497, 0.497, 0.497], std=[0.2508, 0.2508, 0.2508]). The dataset was split using 
             <strong>stratified multi-label splitting</strong> to preserve class distribution across train/validation/test sets (70%/15%/15%), 
             ensuring representative samples of rare diseases in each subset. Patient-level splitting prevented data leakage from multiple images 
             of the same patient appearing across splits.</p>
@@ -173,37 +170,36 @@
       </li>
 
       <li>
-        <i class="fa-solid fa-brain"></i>
-        <div>
-          <strong>3. Transfer Learning with DenseNet121</strong>
-          <p>Leveraged <strong>DenseNet121</strong> pretrained on ImageNet as the feature extraction backbone, adapting it for medical imaging through 
-            fine-tuning. DenseNet's dense connections enable efficient gradient flow and feature reuse, making it particularly effective for 
-            medical images with subtle pathological patterns. The pretrained convolutional layers were initially frozen, then gradually unfrozen 
-            to prevent catastrophic forgetting while allowing domain adaptation to chest X-ray characteristics. The final fully connected layer 
-            was replaced with a 14-output sigmoid layer for independent multi-label predictions.</p>
-        </div>
-      </li>
-      
-      <li>
         <i class="fa-solid fa-balance-scale"></i>
         <div>
-          <strong>4. Class Imbalance Mitigation</strong>
+          <strong>3. Class Imbalance Mitigation</strong>
           <p>To address severe class imbalance, implemented <strong>weighted Binary Cross-Entropy loss</strong> where each disease class received 
             weights inversely proportional to its prevalence. This ensures the model learns to detect rare but critical conditions (e.g., Pneumothorax, 
             Hernia) rather than defaulting to predicting the majority class. Loss weights were computed as: weight = (total_samples) / 
-            (2 × positive_samples), with additional scaling for extreme imbalances. This approach prioritizes sensitivity for screening 
-            applications where false negatives have higher clinical cost than false positives.</p>
+            (2 × positive_samples), with additional scaling for extreme imbalances.</p>
         </div>
       </li>
 
       <li>
+        <i class="fa-solid fa-brain"></i>
+        <div>
+          <strong>4. Transfer Learning with DenseNet121</strong>
+          <p>Leveraged <strong>DenseNet121</strong> pretrained on ImageNet as the feature extraction backbone, adapting it for medical imaging through 
+            fine-tuning. DenseNet's dense connections enable efficient gradient flow and feature reuse, making it particularly effective for 
+            medical images with subtle pathological patterns. The final fully connected layer was replaced with a 14-output sigmoid 
+            layer for independent multi-label predictions.</p>
+        </div>
+      </li>
+      
+      <li>
         <i class="fa-solid fa-chart-line"></i>
         <div>
           <strong>5. Training Strategy & Optimization</strong>
-          <p>Model training employed Adam optimizer with learning rate scheduling (initial LR: 1e-4, reduced on plateau). Training proceeded in 
-            two phases: (1) frozen convolutional layers with trainable classifier head (5 epochs), then (2) full fine-tuning with lower learning 
-            rate (15+ epochs). Early stopping with patience=5 on validation AUC-ROC prevented overfitting. Batch size of 32 balanced memory 
-            constraints with gradient stability. Training monitored loss convergence and per-disease validation metrics to identify potential issues.</p>
+          <p>All parameters were made trainable from the start using Adam optimizer with initial learning rate of 1e-4. Learning rate scheduling 
+            was implemented with reduction on plateau (patience=5 epochs) to adaptively lower the learning rate when validation loss stopped 
+            improving, with minimum LR threshold of 1e-8. Early stopping with patience=15 epochs on validation loss prevented overfitting. 
+            Training was conducted on Google Colab with GPU acceleration for efficient computation, then the best model checkpoint was loaded 
+            for final evaluation on CPU.</p>
         </div>
       </li>
 
@@ -361,7 +357,6 @@
     <div class="skill-tags">
       <span class="skill-tag">PyTorch</span>
       <span class="skill-tag">Deep Learning</span>
-      <span class="skill-tag">Computer Vision</span>
       <span class="skill-tag">Transfer Learning</span>
       <span class="skill-tag">DenseNet Architecture</span>
       <span class="skill-tag">Multi-Label Classification</span>
